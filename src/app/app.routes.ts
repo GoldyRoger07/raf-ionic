@@ -16,5 +16,13 @@ export const routes: Routes = [
   {
     path: 'inscription',
     loadComponent: () => import('./inscription/inscription.page').then( m => m.InscriptionPage)
+  },
+  {
+    path: 'inscription/verification-email',
+    loadComponent: () => import('./verification-email/verification-email.page').then( m => m.VerificationEmailPage)
+  },
+  {
+    path: 'inscription/create-password',
+    loadComponent: () => import('./create-password/create-password.page').then( m => m.CreatePasswordPage)
   }
 ];

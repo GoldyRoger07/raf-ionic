@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { IonContent, IonHeader, IonTitle, IonToolbar, IonGrid, IonCol, IonRow, IonImg, IonText, IonInput, IonSpinner, IonButton } from '@ionic/angular/standalone';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-inscription',
@@ -17,7 +18,8 @@ import { IonContent, IonHeader, IonTitle, IonToolbar, IonGrid, IonCol, IonRow, I
     IonContent, 
     CommonModule, 
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    RouterLink
   ]
 })
 export class InscriptionPage implements OnInit {

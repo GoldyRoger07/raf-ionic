@@ -2,13 +2,15 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { IonContent, IonGrid, IonCol, IonText, IonImg, IonRow, IonInput, IonButton, IonSpinner } from '@ionic/angular/standalone';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.page.html',
   styleUrls: ['./login.page.scss'],
   standalone: true,
-  imports: [IonSpinner,  
+  imports: [
+    IonSpinner,  
     IonButton,
     IonInput,
     IonRow,
@@ -19,7 +21,8 @@ import { IonContent, IonGrid, IonCol, IonText, IonImg, IonRow, IonInput, IonButt
     IonContent, 
     CommonModule, 
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    RouterLink
   ]
 })
 export class LoginPage implements OnInit {

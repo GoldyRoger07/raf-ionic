@@ -1,0 +1,57 @@
+<ion-content [forceOverscroll]="false" [fullscreen]="true">
+  <div class="center">
+      <div class="max-content-w">
+          <ion-grid [fixed]="true">
+              <ion-row class="ion-justify-content-center">
+                  <ion-col size="6">
+                          <ion-img src="assets/img/logo.png"></ion-img>
+                  </ion-col>   
+              </ion-row>
+
+              <ion-row class="ion-justify-content-center">
+                <ion-col size="11">
+                    <div class="title">
+                        Verifye kont imel Ou 
+                    </div>
+                </ion-col>
+              </ion-row>
+
+              <ion-row class="ion-justify-content-center">
+                <ion-col size="11">
+                    <div class="sub-title">
+                      <ion-text>Nou voye on kod Verifikasyon pou ou sou kont imel lan</ion-text>
+                    </div>
+                </ion-col>
+              </ion-row>
+
+              <ion-row>
+                <ion-col>
+                    <form>
+                        <ion-grid>
+                            <ion-row>
+                                  <ion-col>
+                                      <ng-otp-input  [config]="otpInputConfig"></ng-otp-input>
+                                  </ion-col>
+                            </ion-row>
+
+                            <ion-row class="ion-justify-content-center">
+                              <ion-col>
+                                <ion-button expand="block" type="submit">
+                                    @if(isLoading){
+                                        <ion-spinner name="dots"></ion-spinner>
+                                    }@else{
+                                        <ion-text>Verifikasyon</ion-text>
+                                    }
+                                </ion-button>
+                              </ion-col>
+                            </ion-row>
+                        </ion-grid>
+                    </form>
+                </ion-col>
+              </ion-row>
+          </ion-grid>
+      </div>
+  </div>
+</ion-content>
+
+<!-- [formControl]="yourFormControl" -->

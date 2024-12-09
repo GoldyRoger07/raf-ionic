@@ -59,6 +59,11 @@
 .center-y{
     align-content: center;
     height: 100%;
+   
+}
+
+.max-content-w{
+    max-width: 450px;
 }
 
 .center-x{
@@ -66,4 +71,37 @@
     width: 100%;
     
 }
+
+.my-otp-input{
+    background: #fff !important;
+    
+}
+
+.my-otp-input:focus{
+    outline: var(--primary-color) !important;
+    border:1px solid var(--primary-color) !important;
+}
+
+.n-o-c{
+    display: flex;
+    align-items: center;
+    justify-content: center !important;
+    padding-bottom: 20px;
+}
+
+.title{
+    padding-top: 20px;
+    font-weight: bold;
+    text-align: center;
+    color: var(--ion-color-dark-tint);
+    font-size: 20px;
+}
+
+.sub-title{
+    color: var(--ion-color-dark-tint);
+    font-size: small;
+    text-align: center;
+}
+
+
 

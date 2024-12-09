@@ -1,5 +1,6 @@
-<ion-content>
-      <div class="center-y">
+<ion-content [forceOverscroll]="false">
+      <div class="center">
+          <div class="max-content-w">
             <ion-grid [fixed]="true">
                     <ion-row class="ion-justify-content-center">
                         <ion-col size="6">
@@ -10,7 +11,7 @@
                     <ion-row class="ion-justify-content-center">
                       <ion-col size="11">
                           <div class="title">
-                            Kreye yon kont Raf ou
+                            Kreye kont Raf ou
                           </div>
                       </ion-col>
                     </ion-row>
@@ -18,7 +19,7 @@
                     <ion-row class="ion-justify-content-center">
                       <ion-col size="11">
                           <div class="sub-title">
-                            Ou gen kont Raf deja? <ion-text color="primary">Koneksyon</ion-text>
+                            Ou gen kont Raf deja? <ion-text color="primary" routerLink="/login">Koneksyon</ion-text>
                           </div>
                       </ion-col>
                     </ion-row>
@@ -97,5 +98,6 @@
 
                     
             </ion-grid>
+          </div>
       </div>
 </ion-content>
