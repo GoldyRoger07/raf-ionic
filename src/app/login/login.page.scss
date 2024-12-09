@@ -1,0 +1,48 @@
+ion-input{
+    --ion-color-success: #ff9800;
+}
+
+ion-button{
+    margin: 0;
+    width: 100%;
+}
+
+.title{
+    padding-top: 20px;
+    font-weight: bold;
+    text-align: center;
+    color: var(--ion-color-dark-tint);
+    font-size: 20px;
+}
+
+.sub-title{
+    color: var(--ion-color-dark-tint);
+    font-size: small;
+    text-align: center;
+}
+
+.forget-password-text{
+    font-size: small;
+}
+
+.line-block{
+    padding: 10px 0;
+    display: flex;
+    text-wrap: nowrap;
+    align-items: center;
+    font-size: small;
+    gap: 10px;
+    .line{
+        height: 1px;
+        width: 100%;
+        background: #cfcfcf;
+    }
+
+
+}
+
+#logoGoogle{
+    margin-right: 10px;
+}
+
+
