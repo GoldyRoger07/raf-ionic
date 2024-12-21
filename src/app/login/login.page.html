@@ -3,117 +3,119 @@
     <ion-title>login</ion-title>
   </ion-toolbar>
 </ion-header> -->
+<div class="ion-page">
+  <ion-content [forceOverscroll]="false" >
+    <div class="center">
+       <div class="max-content-w">
+           <ion-grid [fixed]="true">
+ 
+             <ion-row class="ion-justify-content-center">
+                 <ion-col size="5">
+                         <ion-img src="assets/img/logo.png"></ion-img>
+                 </ion-col>   
+             </ion-row>
+ 
+             <ion-row class="ion-justify-content-center">
+                 <ion-col size="11">
+                     <div class="title">
+                       Konekte ak kont Raf ou
+                     </div>
+                 </ion-col>
+             </ion-row>
+ 
+             <ion-row class="ion-justify-content-center">
+               <ion-col size="11">
+                   <div class="sub-title">
+                     Ou poko gen kont Raf? <ion-text color="primary" routerLink="/inscription">Enskripsyon</ion-text>
+                   </div>
+               </ion-col>
+             </ion-row>
+             <ion-row>
+                 <ion-col>
+                       <form [formGroup]="formGroup" (submit)="onSubmit()">
+                         <ion-grid>
+ 
+                               <ion-row class="ion-justify-content-center">
+                                   <ion-col>
+                                         <ion-input 
+                                           label="Imel"
+                                           label-placement="floating"
+                                           placeholder="Antre imel ou"
+                                           helperText="Antre yon imel ki valid" 
+                                           errorText="Imel sa pa valid" 
+                                           formControlName="email"
+                                           required="true"></ion-input>
+                                   </ion-col>
+                               </ion-row>
+               
+                               <ion-row class="ion-justify-content-center">
+                                   <ion-col>
+                                     <ion-input
+                                       type="password" 
+                                       label="Modpass"
+                                       label-placement="floating"
+                                       helperText="Antre on modpass ki valid" 
+                                       placeholder="Antre modpass ou"
+                                       formControlName="password">
+                                       <!-- <ion-input-password-toggle slot="end"></ion-input-password-toggle> -->
+                                     </ion-input>
+                       
+                                       
+                                   </ion-col>
+                               </ion-row>
+               
+                               <ion-row class="ion-justify-content-center">
+                                 <ion-col>
+                                   <ion-button id="open-toast" expand="block" type="submit">
+                                       @if(!isLoading){
+                                           <ion-spinner name="dots"></ion-spinner>
+                                       }@else{
+                                           <ion-text>Koneksyon</ion-text>
+                                       }
+                                   </ion-button>
+                                 </ion-col>
+                               </ion-row>
+ 
+                         </ion-grid>
+                       </form>
+                 </ion-col>
+             </ion-row>
+               
+           <ion-row class="ion-justify-content-center">
+             <ion-col size="11">
+                 <ion-text color="primary" class="forget-password-text" routerLink="/inscription/create-password">M bliye modpass mw</ion-text>
+ 
+             </ion-col>
+           </ion-row>
+ 
+           <ion-row class="ion-justify-content-center">
+               <ion-col size="11">
+                   <div class="line-block">
+                       <div class="line"></div>
+                       Oubyen avek
+                       <div class="line"></div>
+                   </div>
+               </ion-col>
+           </ion-row>
+ 
+           <ion-row class="ion-justify-content-center">
+               <ion-col size="11">
+                     <ion-button color="light">
+                       <ion-img id="logoGoogle" src="assets/img/logo_google.png"></ion-img>
+                       <ion-text>Google</ion-text>
+                     </ion-button>
+               </ion-col>
+           </ion-row>
+ 
+ <!-- <ion-icon name="close-circle" color="primary"></ion-icon> -->
+           </ion-grid>
+       </div>
+         
+    </div> 
+     <ion-toast color="danger"  trigger="open-toast" message="idantifyan yo pa korek" [duration]="5000" icon="close-sharp"></ion-toast>
+     
+   </ion-content>
+</div>
 
-<ion-content [forceOverscroll]="false" >
-   <div class="center">
-      <div class="max-content-w">
-          <ion-grid [fixed]="true">
-
-            <ion-row class="ion-justify-content-center">
-                <ion-col size="6">
-                        <ion-img src="assets/img/logo.png"></ion-img>
-                </ion-col>   
-            </ion-row>
-
-            <ion-row class="ion-justify-content-center">
-                <ion-col size="11">
-                    <div class="title">
-                      Konekte ak kont Raf ou
-                    </div>
-                </ion-col>
-            </ion-row>
-
-            <ion-row class="ion-justify-content-center">
-              <ion-col size="11">
-                  <div class="sub-title">
-                    Ou poko gen kont Raf? <ion-text color="primary" routerLink="/inscription">Enskripsyon</ion-text>
-                  </div>
-              </ion-col>
-            </ion-row>
-            <ion-row>
-                <ion-col>
-                      <form [formGroup]="formGroup" (submit)="onSubmit()">
-                        <ion-grid>
-
-                              <ion-row class="ion-justify-content-center">
-                                  <ion-col>
-                                        <ion-input 
-                                          label="Imel"
-                                          label-placement="floating"
-                                          placeholder="Antre imel ou"
-                                          helperText="Antre yon imel ki valid" 
-                                          errorText="Imel sa pa valid" 
-                                          formControlName="email"
-                                          required="true"></ion-input>
-                                  </ion-col>
-                              </ion-row>
-              
-                              <ion-row class="ion-justify-content-center">
-                                  <ion-col>
-                                    <ion-input
-                                      type="password" 
-                                      label="Modpass"
-                                      label-placement="floating"
-                                      helperText="Antre on modpass ki valid" 
-                                      placeholder="Antre modpass ou"
-                                      formControlName="password"
-                                      >
-                                      <!-- <ion-input-password-toggle slot="end"></ion-input-password-toggle> -->
-                                    </ion-input>
-                      
-                                      
-                                  </ion-col>
-                              </ion-row>
-              
-                              <ion-row class="ion-justify-content-center">
-                                <ion-col>
-                                  <ion-button expand="block" type="submit">
-                                      @if(!isLoading){
-                                          <ion-spinner name="dots"></ion-spinner>
-                                      }@else{
-                                          <ion-text>Koneksyon</ion-text>
-                                      }
-                                  </ion-button>
-                                </ion-col>
-                              </ion-row>
-
-                        </ion-grid>
-                      </form>
-                </ion-col>
-            </ion-row>
-              
-          <ion-row class="ion-justify-content-center">
-            <ion-col size="11">
-                <ion-text color="primary" class="forget-password-text">M bliye modpass mw</ion-text>
-
-            </ion-col>
-          </ion-row>
-
-          <ion-row class="ion-justify-content-center">
-              <ion-col size="11">
-                  <div class="line-block">
-                      <div class="line"></div>
-                      Oubyen avek
-                      <div class="line"></div>
-                  </div>
-              </ion-col>
-          </ion-row>
-
-          <ion-row class="ion-justify-content-center">
-              <ion-col size="11">
-                    <ion-button color="light">
-                      <ion-img id="logoGoogle" src="assets/img/logo_google.png"></ion-img>
-                      <ion-text>Google</ion-text>
-                    </ion-button>
-              </ion-col>
-          </ion-row>
-
-
-          </ion-grid>
-      </div>
-        
-   </div> 
-    
-</ion-content>
 
 <!-- fill="outline" -->

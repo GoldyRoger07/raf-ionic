@@ -1,0 +1,68 @@
+<div class="ion-page">
+
+    <ion-header>
+      <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-back-button defaultHref="/accueil"></ion-back-button>
+        </ion-buttons>
+        <ion-title>kwiz Matematik</ion-title>
+      </ion-toolbar>
+    </ion-header>
+
+    <ion-content>
+        <ion-grid>
+            
+            <ion-row>
+              <ion-col>Meye Sko <b>15 Ks</b></ion-col>
+                <ion-col>Sko <b>0 Ks</b></ion-col>
+            </ion-row>
+            <ion-row class="ion-justify-content-center">
+              <ion-col size="2">
+                <div class="my-timer">
+                  10
+                </div>
+              </ion-col>
+            </ion-row>
+            <ion-row>
+                <ion-col>
+                    <div class="question-box">
+                        <p>
+                          Kiyes nan nimewo sa yo ki pi gro,
+                          Kiyes nan nimewo sa yo ki pi gro,
+                          Kiyes nan nimewo sa yo ki pi gro,
+                          Kiyes nan nimewo sa yo ki pi gro ?
+
+                        </p>
+                    </div>
+                    
+                </ion-col>
+            </ion-row>
+            <ion-row class="last-ion-row">
+                <ion-col>
+                  <div class="reponses-box">
+                        <div class="reponse-box">
+                           <div class="reponse-letter">A:</div>  1234
+                        </div>
+                        <div class="reponse-box">
+                          <div class="reponse-letter">B:</div> 97778
+                        </div>
+                        <div class="reponse-box success">
+                          <div class="reponse-letter">C:</div> 7078
+                        </div>
+                        <div class="reponse-box">
+                          <div class="reponse-letter">D:</div> 57370
+                        </div>
+                  </div>
+                </ion-col>
+            </ion-row>
+        </ion-grid>
+    </ion-content> 
+
+</div>
+<ion-alert
+  [isOpen] ="isAlertOpen"
+  header ="Pati a fini"
+  message = "Ou reponn 5 kesyon"
+  [buttons] = "alertButtons"
+  (didDismiss)="setOpen(false)"
+></ion-alert>

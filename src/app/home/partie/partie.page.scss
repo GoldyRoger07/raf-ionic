@@ -1,0 +1,60 @@
+ion-grid{
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    padding-bottom: 100px;
+}
+
+.last-ion-row{
+    margin-top: auto;
+}
+
+.reponses-box{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.reponse-box{
+    border: 1px solid #eee;
+    border-radius: 10px;
+    padding: 15px 10px;
+    display: flex;
+    gap: 15px;
+
+}
+
+.reponse-box.success{
+    background: #b4ff6d;
+}
+
+.reponse-box.error{
+    background: #ff6d6d;
+}
+
+.question-box{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 35dvh;
+    
+}
+
+.my-timer{
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border: 1px solid #eee;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+
+.reponse-letter{
+    padding: 0 5px;
+    display: inline;
+    color: var(--ion-color-primary);
+    font-weight: bold;
+}

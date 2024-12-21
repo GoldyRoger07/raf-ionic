@@ -24,5 +24,17 @@ export const routes: Routes = [
   {
     path: 'inscription/create-password',
     loadComponent: () => import('./create-password/create-password.page').then( m => m.CreatePasswordPage)
+  },
+  {
+    path: 'accueil',
+    loadComponent: () => import('./home/accueil/accueil.page').then( m => m.AccueilPage)
+  },
+  {
+    path: 'accueil/quiz',
+    loadComponent: () => import('./home/quiz/quiz.page').then( m => m.QuizPage)
+  },
+  {
+    path: 'partie',
+    loadComponent: () => import('./home/partie/partie.page').then( m => m.PartiePage)
   }
 ];
