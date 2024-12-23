@@ -1,77 +1,144 @@
-<ion-menu contentId="main-content" type="overlay">
+<!-- <ion-menu contentId="main-content" type="overlay">
   <ion-content>
+    <ion-grid>
+      <ion-row>
+        <ion-col size="6">
+          <ion-img src="assets/img/logo.png"></ion-img>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
     <ion-list id="inbox-list">
-      <!-- <ion-list-header>Inbox</ion-list-header>
-      <ion-note>hi&#64;ionicframework.com</ion-note> -->
+     
 
-      <ion-menu-toggle auto-hide="false" *ngFor="let p of appPages; let i = index">
-        <ion-item routerDirection="root" [routerLink]="[p.url]" lines="none" detail="false" routerLinkActive="selected">
-          <ion-icon aria-hidden="true" slot="start" [ios]="p.icon + '-outline'" [md]="p.icon + '-sharp'"></ion-icon>
-          <ion-label>{{ p.title }}</ion-label>
+      <ion-menu-toggle auto-hide="false" *ngFor="let m of menuItems; let i = index">
+        <ion-item routerDirection="root" [routerLink]="[m.url]" lines="none" detail="false" routerLinkActive="selected">
+          <ion-icon aria-hidden="true" slot="start" [ios]="m.icon + '-outline'" [md]="m.icon + '-sharp'"></ion-icon>
+          <ion-label>{{ m.title }}</ion-label>
         </ion-item>
       </ion-menu-toggle>
     </ion-list>
-
-    <!-- <ion-list id="labels-list">
-      <ion-list-header>Labels</ion-list-header>
-
-      <ion-item *ngFor="let label of labels" lines="none">
-        <ion-icon aria-hidden="true" slot="start" ios="bookmark-outline" md="bookmark-sharp"></ion-icon>
-        <ion-label>{{ label }}</ion-label>
-      </ion-item>
-    </ion-list> -->
   </ion-content>
-</ion-menu>
+</ion-menu> -->
 <div id="main-content">  
   <ion-header>
-      <ion-toolbar>
-        <ion-buttons slot="start">
-          <ion-menu-button></ion-menu-button>
-        </ion-buttons>
-        <div class="toolbar">
-          <div class="my-logo">
-            <ion-img src="assets/img/logo.png"></ion-img>
-          </div>
-          <div class="logo-profile">
-            <ion-img src="assets/img/logoProfile.jpg"></ion-img>
-          </div>
+    <ion-toolbar>
+      <ion-buttons slot="start">
+        <ion-menu-button></ion-menu-button>
+      </ion-buttons>
+      <div class="toolbar">
+        <div class="my-logo">
+          <ion-img src="assets/img/logo.png"></ion-img>
         </div>
-        
-      </ion-toolbar>
-      <ion-segment>
-          <ion-segment-button value="first" contentId="first">
-              <ion-label>Kwiz ki poko fini</ion-label>
-          </ion-segment-button>
-          <ion-segment-button value="second" contentId="second">
-            <ion-label>Kwiz ki fini</ion-label>
+        <div class="logo-profile">
+          <ion-img src="assets/img/logoProfile.jpg"></ion-img>
+        </div>
+      </div>
+      
+    </ion-toolbar>
+    <ion-segment [scrollable]="true">
+        <ion-segment-button value="quiz-encours" contentId="quiz-encours">
+            <ion-label>Kwiz ki poko fini</ion-label>
         </ion-segment-button>
-      </ion-segment>
+        <ion-segment-button value="quiz-terminer" contentId="quiz-terminer">
+          <ion-label>Kwiz ki fini</ion-label>
+        </ion-segment-button>
+        <ion-segment-button value="transactions" contentId="transactions">
+          <ion-label>Tranzaksyon</ion-label>
+        </ion-segment-button>
+    </ion-segment>
   </ion-header>   
   <ion-content>
-      <ion-segment-view>
-        <ion-segment-content id="first">
-              <ion-list>
-                <ion-item lines="none" routerLink="/accueil/quiz">
-                  <ion-avatar slot="start">
-                      <img src="assets/img/mathematique_illustration.jpg" alt="">
-                  </ion-avatar>
-                  <ion-label>Matematik</ion-label>
-                </ion-item>
-              </ion-list>
-        </ion-segment-content>
-        <ion-segment-content id="second">
+    <ion-segment-view>
+      <ion-segment-content id="quiz-encours">
+            <ion-list>
+              <ion-item lines="none" routerLink="/accueil/quiz">
+                <ion-avatar slot="start">
+                    <img src="assets/img/mathematique_illustration.jpg" alt="">
+                </ion-avatar>
+                <ion-label>Matematik</ion-label>
+              </ion-item>
+            </ion-list>
+      </ion-segment-content>
+      <ion-segment-content id="quiz-terminer">
+        <ion-list>
+          <ion-item lines="none" routerLink="/accueil/quiz">
+            <ion-avatar slot="start">
+                <img src="assets/img/mathematique_illustration.jpg" alt="">
+            </ion-avatar>
+            <ion-label>Matematik</ion-label>
+          </ion-item>
+        </ion-list>
+      </ion-segment-content>
+      <ion-segment-content id="transactions">
           <ion-list>
-            <ion-item lines="none" routerLink="/accueil/quiz">
-              <ion-avatar slot="start">
-                  <img src="assets/img/mathematique_illustration.jpg" alt="">
-              </ion-avatar>
-              <ion-label>Matematik</ion-label>
-            </ion-item>
+              <ion-item lines="none" (click)="setOpen(true,'Depoze Lajan')" id="open-modal">
+                  <ion-icon slot="start" ios="add-circle-outline" md="add-circle-sharp"></ion-icon>
+                  <ion-label>Depoze lajan sou kont ou</ion-label>
+              </ion-item>
+              <ion-item lines="none" (click)="setOpen(true,'Retire Lajan')">
+                <ion-icon slot="start" ios="remove-circle-outline" md="remove-circle-sharp"></ion-icon>
+                <ion-label>Retire lajan sou kont ou</ion-label>
+              </ion-item>
           </ion-list>
-        </ion-segment-content>
-      </ion-segment-view>
-  </ion-content>
+          <ion-modal [isOpen]="isModalOpen" (willDismiss)="onWillDismiss($event)">
+            <ng-template>
+              <ion-header>
+                <ion-toolbar>
+                  <ion-buttons slot="start">
+                    <ion-button (click)="cancel()">Anile</ion-button>
+                  </ion-buttons>
+                  <ion-title>{{titreTransaction}}</ion-title>
+                  <ion-buttons slot="end">
+                    <ion-button (click)="confirm()" [strong]="true">Konfime</ion-button>
+                  </ion-buttons>
+                </ion-toolbar>
+              </ion-header>
+              <ion-content >
+                <ion-grid>
+                    <ion-row>
+                          <ion-col>
+                              <form [formGroup]="formGroup">
+                                  <ion-grid>
+                                    <ion-row>
+                                      <ion-col>
+                                        <ion-input 
+                                           label="Kantite Lajan (HTG)"
+                                           label-placement="floating"
+                                           placeholder="Antre kantite lajan depo a"
+                                           helperText="Antre chif selman" 
+                                           errorText="Verifye done ou antre yo" 
+                                           formControlName="montant"
+                                           required="true"></ion-input>
+                                      </ion-col>
+                                    </ion-row>
+                                    <ion-row>
+                                      <ion-col>
+                                        <ion-label>Metod Peman</ion-label>
+                                      </ion-col>
+                                    </ion-row>
+                                    <ion-row>
+                                      <ion-col>
+                                        <radio-button-img 
+                                          label="MonCash" 
+                                          value="moncash" 
+                                          src="/assets/img/logoMoncash.png" 
+                                          formControlName="paiement" 
+                                          name="paiement"/>
+                                      </ion-col>
+                                    </ion-row>
+                                  </ion-grid>
+                              </form>
+                          </ion-col>
+                    </ion-row>
 
+                </ion-grid>
+              </ion-content>
+            </ng-template>
+          </ion-modal>
+      </ion-segment-content>
+    </ion-segment-view>
+  </ion-content>
+  
   <!-- https://hubstreamonlineapi-production.up.railway.app/api.online.hubstream.com/compte/FW374006 -->
 </div>
 

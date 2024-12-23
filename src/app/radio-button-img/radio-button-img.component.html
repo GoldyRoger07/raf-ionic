@@ -1,0 +1,15 @@
+<label class="custom-radio">
+  <input type="radio" #input [name]="name" [value]="value" (input)="onChange(input.value)"/>
+  <div class="radio-btn">
+      <div class="content">
+          <div class="profile-img">
+              <img [src]="src" alt="Logo Moncash">
+          </div>
+          <h2>{{label}}</h2>
+          <span class="check-icon">
+              <div class="icon">
+              </div>
+          </span>
+      </div>
+  </div>
+</label>
