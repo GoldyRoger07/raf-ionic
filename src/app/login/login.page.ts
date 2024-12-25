@@ -6,25 +6,24 @@ import { RouterLink } from '@angular/router';
 import {closeCircleSharp,closeCircleOutline, closeSharp } from 'ionicons/icons';
 import { addIcons } from 'ionicons';
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.page.html',
-  styleUrls: ['./login.page.scss'],
-  standalone: true,
-  imports: [IonIcon, IonToast, 
-    IonSpinner,  
-    IonButton,
-    IonInput,
-    IonRow,
-    IonImg, 
-    IonCol, 
-    IonGrid,
-    IonText,
-    IonContent, 
-    CommonModule, 
-    FormsModule,
-    ReactiveFormsModule,
-    RouterLink
-  ]
+    selector: 'app-login',
+    templateUrl: './login.page.html',
+    styleUrls: ['./login.page.scss'],
+    imports: [IonIcon, IonToast,
+        IonSpinner,
+        IonButton,
+        IonInput,
+        IonRow,
+        IonImg,
+        IonCol,
+        IonGrid,
+        IonText,
+        IonContent,
+        CommonModule,
+        FormsModule,
+        ReactiveFormsModule,
+        RouterLink
+    ]
 })
 export class LoginPage implements OnInit {
 

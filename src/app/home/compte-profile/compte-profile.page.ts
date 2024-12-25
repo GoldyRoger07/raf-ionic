@@ -7,11 +7,10 @@ import { createOutline, listOutline, lockClosedOutline } from 'ionicons/icons';
 import { RouterLink } from '@angular/router';
 
 @Component({
-  selector: 'app-compte-profile',
-  templateUrl: './compte-profile.page.html',
-  styleUrls: ['./compte-profile.page.scss'],
-  standalone: true,
-  imports: [RouterLink,IonLabel, IonIcon, IonItem, IonList, IonImg, IonAvatar, IonGrid, IonRow, IonCol, IonBackButton, IonButtons, IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule]
+    selector: 'app-compte-profile',
+    templateUrl: './compte-profile.page.html',
+    styleUrls: ['./compte-profile.page.scss'],
+    imports: [RouterLink, IonLabel, IonIcon, IonItem, IonList, IonImg, IonAvatar, IonGrid, IonRow, IonCol, IonBackButton, IonButtons, IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule]
 })
 export class CompteProfilePage implements OnInit {
 

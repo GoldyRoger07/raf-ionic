@@ -4,11 +4,10 @@ import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angul
 import { IonContent, IonHeader, IonTitle, IonToolbar, IonButtons, IonBackButton, IonGrid, IonRow, IonCol, IonInput, IonButton, IonSpinner, IonText } from '@ionic/angular/standalone';
 
 @Component({
-  selector: 'app-update-infos',
-  templateUrl: './update-infos.page.html',
-  styleUrls: ['./update-infos.page.scss'],
-  standalone: true,
-  imports: [IonText, IonSpinner, IonButton, ReactiveFormsModule,IonInput, IonCol, IonRow, IonGrid, IonBackButton, IonButtons, IonContent, IonHeader, IonTitle, IonToolbar, CommonModule]
+    selector: 'app-update-infos',
+    templateUrl: './update-infos.page.html',
+    styleUrls: ['./update-infos.page.scss'],
+    imports: [IonText, IonSpinner, IonButton, ReactiveFormsModule, IonInput, IonCol, IonRow, IonGrid, IonBackButton, IonButtons, IonContent, IonHeader, IonTitle, IonToolbar, CommonModule]
 })
 export class UpdateInfosPage implements OnInit {
 

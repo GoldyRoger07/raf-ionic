@@ -5,22 +5,21 @@ import { IonContent, IonHeader, IonTitle, IonToolbar, IonGrid, IonCol, IonRow, I
 import { RouterLink } from '@angular/router';
 
 @Component({
-  selector: 'app-inscription',
-  templateUrl: './inscription.page.html',
-  styleUrls: ['./inscription.page.scss'],
-  standalone: true,
-  imports: [IonButton, IonSpinner, IonInput, 
-    IonText,
-    IonImg,
-    IonRow, 
-    IonCol, 
-    IonGrid, 
-    IonContent, 
-    CommonModule, 
-    FormsModule,
-    ReactiveFormsModule,
-    RouterLink
-  ]
+    selector: 'app-inscription',
+    templateUrl: './inscription.page.html',
+    styleUrls: ['./inscription.page.scss'],
+    imports: [IonButton, IonSpinner, IonInput,
+        IonText,
+        IonImg,
+        IonRow,
+        IonCol,
+        IonGrid,
+        IonContent,
+        CommonModule,
+        FormsModule,
+        ReactiveFormsModule,
+        RouterLink
+    ]
 })
 export class InscriptionPage implements OnInit {
 
