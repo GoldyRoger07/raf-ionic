@@ -1,0 +1,73 @@
+<div class="ion-page">
+      <ion-header>
+        <ion-toolbar>
+          <ion-buttons slot="start">
+              <ion-back-button defaultHref="/accueil"></ion-back-button>
+          </ion-buttons>
+          <ion-title>Modifye Enfomasyon Pesonel</ion-title>
+        </ion-toolbar>
+      </ion-header>
+      <ion-content>
+        <form [formGroup]="formGroup">
+            <ion-grid>
+                <ion-row>
+                    <ion-col>
+                      <ion-input 
+                        formControlName="prenom"
+                        label="Non"
+                        label-placement="floating"
+                        placeholder="Antre non ou"
+                        helperText="Sa ap pemet nou pi byen idantifye w" 
+                        errorText="non sa pa valid"/>
+                      </ion-col>
+                </ion-row>
+                <ion-row>
+                  <ion-col>
+                    <ion-input 
+                      formControlName="nom"
+                      label="Sinyati"
+                      label-placement="floating"
+                      placeholder="Antre sinyatiw ou"
+                      helperText="Sa ap pemet nou pi byen idantifye w" 
+                      errorText="Sinyati sa pa valid"/>
+                    </ion-col>
+              </ion-row>
+              <ion-row>
+                <ion-col>
+                      <ion-input 
+                        formControlName="telephone"
+                        type="telephone"
+                        label="Telefon"
+                        label-placement="floating"
+                        placeholder="Antre telefon ou"
+                        helperText="Nimewo sa ap pemet ou fe tranzaksyon MonCash sou platfom lan" 
+                        errorText="telefon sa pa valid"/>
+                </ion-col>
+              </ion-row>
+              <ion-row >
+                <ion-col>
+                      <ion-input 
+                        formControlName="username"
+                        label="Non Itilizate"
+                        label-placement="floating"
+                        placeholder="Antre on non itilizate"
+                        helperText="Non sa ap pemet ou pi diskre sou platfom nan" 
+                        errorText="Non sa pa valid"/>
+                </ion-col>
+              </ion-row>
+
+              <ion-row class="last-ion-row">
+                <ion-col>
+                  <ion-button expand="block" type="submit">
+                      @if(isLoading){
+                          <ion-spinner name="dots"></ion-spinner>
+                      }@else{
+                          <ion-text>Modifye</ion-text>
+                      }
+                  </ion-button>
+                </ion-col>
+              </ion-row>
+            </ion-grid>
+        </form>
+      </ion-content>
+</div>

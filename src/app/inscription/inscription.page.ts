@@ -28,7 +28,8 @@ export class InscriptionPage implements OnInit {
     nom: new FormControl("",Validators.required),
     prenom: new FormControl("",Validators.required),
     telephone: new FormControl("",Validators.required),
-    email: new FormControl("",Validators.required)
+    email: new FormControl("",Validators.required),
+    username: new FormControl("",Validators.required)
   })
 
   isLoading = false

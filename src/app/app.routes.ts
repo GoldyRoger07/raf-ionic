@@ -36,5 +36,17 @@ export const routes: Routes = [
   {
     path: 'partie',
     loadComponent: () => import('./home/partie/partie.page').then( m => m.PartiePage)
+  },
+  {
+    path: 'profile',
+    loadComponent: () => import('./home/compte-profile/compte-profile.page').then( m => m.CompteProfilePage)
+  },
+  {
+    path: 'modifier/compte',
+    loadComponent: () => import('./home/update-infos/update-infos.page').then( m => m.UpdateInfosPage)
+  },
+  {
+    path: 'modifier/password',
+    loadComponent: () => import('./home/update-password/update-password.page').then( m => m.UpdatePasswordPage)
   }
 ];

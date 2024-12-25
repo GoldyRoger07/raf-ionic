@@ -46,12 +46,15 @@ export class AccueilPage implements OnInit {
 
   @ViewChild(IonModal) modal!: IonModal;
   titreTransaction = "Depoze Lajan"
+  placeholderTransaction = "Antre kantite lajan depo a"
+  typeTransaction = "depot"
   isModalOpen  = false
+  isConnected = true
   message = 'This modal example uses triggers to automatically open a modal when the button is clicked.';
   name!: string;
 
   formGroup = new FormGroup({
-    montant: new FormControl(0),
+    montant: new FormControl(),
     paiement: new FormControl('')
   })
 
@@ -89,8 +92,20 @@ export class AccueilPage implements OnInit {
 
   setOpen(value1:boolean,value2?:string){
     this.isModalOpen = value1
-    if(value2)
-      this.changeTitreTransaction(value2)
+    this.setModalState(value2)
+  }
+
+  setModalState(value?:string){
+    if(value){
+      this.changeTitreTransaction(value)
+      if(value.toLocaleLowerCase().includes("depoze")){
+        this.placeholderTransaction = "Antre kantite lajan depo a"
+        this.typeTransaction = "depot"
+      }if(value.toLocaleLowerCase().includes("retire")){
+        this.placeholderTransaction = "Antre kantite lajan retre a"
+        this.typeTransaction = "retrait"
+      }
+    }
   }
 
 }
