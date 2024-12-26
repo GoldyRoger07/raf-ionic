@@ -4,7 +4,7 @@ import { RouterLink } from '@angular/router';
 import { IonContent, IonMenu,IonMenuButton,IonMenuToggle, IonHeader, IonTitle, IonToolbar, IonButtons, IonImg, IonSegment, IonSegmentButton, IonSegmentView,IonSegmentContent,IonLabel, IonList, IonItem, IonAvatar, IonIcon, IonRouterOutlet, IonListHeader, IonNote, IonSplitPane, IonGrid, IonCol, IonRow, IonModal, IonButton, IonInput } from '@ionic/angular/standalone';
 import { addIcons } from 'ionicons';
 import { addCircleOutline, addCircleSharp, archiveOutline, archiveSharp, bookmarkOutline, bookmarkSharp, heartOutline, heartSharp, homeOutline, homeSharp, mailOutline, mailSharp, paperPlaneOutline, paperPlaneSharp, removeCircleOutline, removeCircleSharp, trashOutline, trashSharp, warningOutline, warningSharp } from 'ionicons/icons';
-import { OverlayEventDetail } from '@ionic/angular/node_modules/@ionic/core/components';
+// import { OverlayEventDetail } from '@ionic/angular';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RadioButtonImgComponent } from 'src/app/radio-button-img/radio-button-img.component';
 @Component({
@@ -80,7 +80,7 @@ export class AccueilPage implements OnInit {
   }
 
   onWillDismiss(event: Event) {
-    const ev = event as CustomEvent<OverlayEventDetail<string>>;
+    const ev = event as any;
     if (ev.detail.role === 'confirm') {
       this.message = `Hello, ${ev.detail.data}!`;
     }

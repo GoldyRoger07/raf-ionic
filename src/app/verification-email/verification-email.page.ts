@@ -9,7 +9,7 @@ import { IonContent, IonHeader, IonTitle, IonToolbar, IonGrid, IonRow, IonCol, I
     selector: 'app-verification-email',
     templateUrl: './verification-email.page.html',
     styleUrls: ['./verification-email.page.scss'],
-    imports: [IonText, IonSpinner, IonButton, IonImg, IonCol, IonRow, IonGrid, IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, NgOtpInputModule]
+    imports: [IonText, IonImg, IonCol, IonRow, IonGrid, IonContent, CommonModule, FormsModule, NgOtpInputModule]
 })
 export class VerificationEmailPage implements OnInit {
 
