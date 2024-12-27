@@ -1,17 +1,22 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
-import { NgOtpInputModule } from 'ng-otp-input';
-import { IonContent, IonHeader, IonTitle, IonToolbar, IonGrid, IonRow, IonCol, IonImg, IonButton, IonSpinner, IonText } from '@ionic/angular/standalone';
+import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { NgOtpInputComponent, NgOtpInputModule } from 'ng-otp-input';
+import { IonContent,IonToast, IonGrid, IonRow, IonCol, IonImg, IonText } from '@ionic/angular/standalone';
+import { TimerComponent } from "../home/timer/timer.component";
+import { CompteService } from '../services/compte.service';
+import { closeSharp } from 'ionicons/icons';
+import { addIcons } from 'ionicons';
+import { Router } from '@angular/router';
 
 
 @Component({
     selector: 'app-verification-email',
     templateUrl: './verification-email.page.html',
     styleUrls: ['./verification-email.page.scss'],
-    imports: [IonText, IonImg, IonCol, IonRow, IonGrid, IonContent, CommonModule, FormsModule, NgOtpInputModule]
+    imports: [IonToast,ReactiveFormsModule,IonText, IonImg, IonCol, IonRow, IonGrid, IonContent, CommonModule, FormsModule, NgOtpInputModule, TimerComponent]
 })
-export class VerificationEmailPage implements OnInit {
+export class VerificationEmailPage implements AfterViewInit {
 
   otpInputConfig = {
     length: 6,
@@ -19,11 +24,58 @@ export class VerificationEmailPage implements OnInit {
     inputClass: "my-otp-input",
   }
 
+  isToastOpen = false
+  toastMessage = ""
+
+  @ViewChild("otpInput")
+  otpInput! : NgOtpInputComponent
+
+  codeVerification = new FormControl()
+
+  isTimerRunning = true
+
   isLoading = false
 
-  constructor() { }
+  @ViewChild("timer")
+   timer!: TimerComponent
 
-  ngOnInit() {
+  constructor(private compteService:CompteService,private router:Router) { 
+    addIcons({closeSharp}); 
+    this.codeVerification.valueChanges.subscribe((value:string)=>{
+      if(value!==null && value.length === 6){
+        this.compteService.verifierCode(value).subscribe({
+          next:(response)=>{
+            this.otpInput.setValue(null)
+            this.router.navigate(["/inscription/create-password"])
+          },
+          error: (response)=>{
+            this.otpInput.setValue(null)
+            this.otpInput.focusTo(1)
+            this.toastMessage = response.error.message.contenu
+            this.isToastOpen = true
+
+            setTimeout(()=> this.isToastOpen = false,5000)
+          }
+        })
+        
+      }
+       
+    })
+  }
+
+  ngAfterViewInit() {
+      this.timer.startTimer() 
+  }
+
+  onTimerFinished(){
+    this.isTimerRunning = false
+  }
+
+  onClickResendCode(){
+    this.compteService.resendCodeVerification()
+    this.isTimerRunning = true
+    setTimeout(()=>this.timer.startTimer(),100)
+    
   }
 
 }

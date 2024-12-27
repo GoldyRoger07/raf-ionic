@@ -11,7 +11,7 @@
               <ion-row class="ion-justify-content-center">
                 <ion-col size="11">
                     <div class="title">
-                        Verifye kont imel Ou 
+                        Verifye imel Ou 
                     </div>
                 </ion-col>
               </ion-row>
@@ -19,7 +19,7 @@
               <ion-row class="ion-justify-content-center">
                 <ion-col size="11">
                     <div class="sub-title">
-                      <ion-text>Nou voye on kod Verifikasyon pou ou sou kont imel lan</ion-text>
+                      <ion-text>Nou voye on kod Verifikasyon pou ou sou imel lan</ion-text>
                     </div>
                 </ion-col>
               </ion-row>
@@ -30,7 +30,16 @@
                         <ion-grid>
                             <ion-row>
                                   <ion-col>
-                                      <ng-otp-input  [config]="otpInputConfig"></ng-otp-input>
+                                      <ng-otp-input #otpInput  [formControl]="codeVerification"  [config]="otpInputConfig"></ng-otp-input>
+                                  </ion-col>
+                            </ion-row>
+                            <ion-row>
+                                  <ion-col>
+                                    @if(isTimerRunning) {
+                                      <p>Apre <app-timer [timerLeft]="30" #timer (timerComplete)="onTimerFinished()"/> wap ka mande revoye on lot kod</p>
+                                    }@else {
+                                      <p>ou pa resevwa kod lan? <ion-text color="primary" (click)="onClickResendCode()">Revoye kod lan</ion-text></p>
+                                    }
                                   </ion-col>
                             </ion-row>
 
@@ -52,6 +61,7 @@
           </ion-grid>
       </div>
   </div>
+  <ion-toast color="danger"  [isOpen]="isToastOpen" [message]="toastMessage" [duration]="5000" icon="close-sharp"></ion-toast>
 </ion-content>
 
 <!-- [formControl]="yourFormControl" -->
