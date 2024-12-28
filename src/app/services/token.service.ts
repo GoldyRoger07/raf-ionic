@@ -1,3 +1,4 @@
+import { HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 @Injectable({
@@ -6,4 +7,14 @@ import { Injectable } from '@angular/core';
 export class TokenService {
 
   constructor() { }
+
+  getHeadersWithToken():HttpHeaders{
+        const token = localStorage.getItem('token'); // ou sessionStorage
+    
+        // Crée les headers avec le token
+        return new HttpHeaders({
+            'Authorization': `Bearer ${token}`,
+        });
+    
+  }
 }

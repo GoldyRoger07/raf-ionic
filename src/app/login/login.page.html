@@ -42,7 +42,7 @@
                                            label-placement="floating"
                                            placeholder="Antre imel ou"
                                            helperText="Antre yon imel ki valid" 
-                                           errorText="Imel sa pa valid" 
+                                           errorText="Imel lan paka rete vid" 
                                            formControlName="email"
                                            required="true"></ion-input>
                                    </ion-col>
@@ -54,7 +54,8 @@
                                        type="password" 
                                        label="Modpass"
                                        label-placement="floating"
-                                       helperText="Antre on modpass ki valid" 
+                                       helperText="Antre on modpass ki valid"
+                                       errorText="Modpass lan paka rete vid" 
                                        placeholder="Antre modpass ou"
                                        formControlName="password">
                                        <!-- <ion-input-password-toggle slot="end"></ion-input-password-toggle> -->
@@ -66,13 +67,17 @@
                
                                <ion-row class="ion-justify-content-center">
                                  <ion-col>
-                                   <ion-button id="open-toast" expand="block" type="submit">
-                                       @if(!isLoading){
-                                           <ion-spinner name="dots"></ion-spinner>
-                                       }@else{
-                                           <ion-text>Koneksyon</ion-text>
-                                       }
-                                   </ion-button>
+                                   
+                                      @if (isLoading) {
+                                          <ion-button disabled="true" expand="block" type="submit">
+                                              <ion-spinner></ion-spinner>
+                                          </ion-button>
+                                      }@else {
+                                          <ion-button expand="block" type="submit">
+                                            <ion-text>Koneksyon</ion-text>
+                                          </ion-button>
+                                      }
+                                   
                                  </ion-col>
                                </ion-row>
  
@@ -111,7 +116,7 @@
        </div>
          
     </div> 
-     <ion-toast color="danger"  trigger="open-toast" message="idantifyan yo pa korek" [duration]="5000" icon="close-sharp"></ion-toast>
+     <ion-toast color="danger" [isOpen]="isToastOpen" [message]="toastMessage" [duration]="5000" icon="close-sharp"></ion-toast>
      
    </ion-content>
 </div>

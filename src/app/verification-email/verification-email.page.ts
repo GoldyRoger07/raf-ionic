@@ -2,7 +2,7 @@ import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angula
 import { CommonModule } from '@angular/common';
 import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgOtpInputComponent, NgOtpInputModule } from 'ng-otp-input';
-import { IonContent,IonToast, IonGrid, IonRow, IonCol, IonImg, IonText } from '@ionic/angular/standalone';
+import { IonContent,IonToast, IonGrid, IonRow, IonCol, IonImg, IonText,IonProgressBar } from '@ionic/angular/standalone';
 import { TimerComponent } from "../home/timer/timer.component";
 import { CompteService } from '../services/compte.service';
 import { closeSharp } from 'ionicons/icons';
@@ -14,7 +14,7 @@ import { Router } from '@angular/router';
     selector: 'app-verification-email',
     templateUrl: './verification-email.page.html',
     styleUrls: ['./verification-email.page.scss'],
-    imports: [IonToast,ReactiveFormsModule,IonText, IonImg, IonCol, IonRow, IonGrid, IonContent, CommonModule, FormsModule, NgOtpInputModule, TimerComponent]
+    imports: [IonProgressBar,IonToast,ReactiveFormsModule,IonText, IonImg, IonCol, IonRow, IonGrid, IonContent, CommonModule, FormsModule, NgOtpInputModule, TimerComponent]
 })
 export class VerificationEmailPage implements AfterViewInit {
 
@@ -43,18 +43,32 @@ export class VerificationEmailPage implements AfterViewInit {
     addIcons({closeSharp}); 
     this.codeVerification.valueChanges.subscribe((value:string)=>{
       if(value!==null && value.length === 6){
+        this.isLoading = true
         this.compteService.verifierCode(value).subscribe({
           next:(response)=>{
+            this.isLoading = false
             this.otpInput.setValue(null)
             this.router.navigate(["/inscription/create-password"])
           },
           error: (response)=>{
+            this.isLoading = false
             this.otpInput.setValue(null)
-            this.otpInput.focusTo(1)
-            this.toastMessage = response.error.message.contenu
-            this.isToastOpen = true
+            try{
+              this.toastMessage = response.error.message.contenu
+              this.isToastOpen = true
+              setTimeout(()=>{ 
+                this.isToastOpen = false
+                if(response.error.message.codeError === 1)
+                  this.router.navigate(["/inscription"])
+              },5500)
+            }catch(e){
+              this.toastMessage = "Verifye koneksyon entenet ou an"
+              this.isToastOpen = true
+            }
+            
+            
 
-            setTimeout(()=> this.isToastOpen = false,5000)
+            
           }
         })
         

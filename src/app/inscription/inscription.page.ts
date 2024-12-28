@@ -1,10 +1,12 @@
 import { Component, ElementRef, OnInit, QueryList, ViewChildren } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
-import { IonContent, IonHeader, IonTitle, IonToolbar, IonGrid, IonCol, IonRow, IonImg, IonText, IonInput, IonSpinner, IonButton } from '@ionic/angular/standalone';
+import { IonToast,IonContent, IonHeader, IonTitle, IonToolbar, IonGrid, IonCol, IonRow, IonImg, IonText, IonInput, IonSpinner, IonButton } from '@ionic/angular/standalone';
 import { Router, RouterLink } from '@angular/router';
 import { Compte } from '../models/Compte';
 import { CompteService } from '../services/compte.service';
+import { addIcons } from 'ionicons';
+import { call, closeSharp } from 'ionicons/icons';
 
 @Component({
     selector: 'app-inscription',
@@ -12,6 +14,7 @@ import { CompteService } from '../services/compte.service';
     styleUrls: ['./inscription.page.scss'],
     standalone:true,
     imports: [
+        IonToast,
         IonButton,
         IonSpinner, 
         IonInput,
@@ -32,12 +35,16 @@ export class InscriptionPage implements OnInit {
   @ViewChildren("ionInput")
   ionInputs! : QueryList<IonInput>
 
+  isToastOpen = false
+
+  toastMessage = ""
+
   formGroup = new FormGroup({
-    nom: new FormControl("",[Validators.required,Validators.minLength(3),Validators.pattern("^[a-zA-Z\s]+$")]),
-    prenom: new FormControl("",[Validators.required,Validators.minLength(3),Validators.pattern("^[a-zA-Z\s]+$")]),
+    nom: new FormControl("",[Validators.required,Validators.minLength(3),Validators.pattern("^[a-zA-Z\\s]+$")]),
+    prenom: new FormControl("",[Validators.required,Validators.minLength(3),Validators.pattern("^[a-zA-Z\\s]+$")]),
     telephone: new FormControl("",[Validators.required,Validators.pattern("^[0-9]{8}$")]),
     email: new FormControl("",[Validators.required,Validators.email]),
-    username: new FormControl("",[Validators.required,Validators.minLength(4),Validators.pattern("^[a-zA-Z0-9\s]+$")])
+    username: new FormControl("",[Validators.required,Validators.minLength(4),Validators.pattern("^[a-zA-Z0-9\\s]+$")])
   })
 
   prenomErrorText = "Non an paka rete vid"
@@ -51,6 +58,7 @@ export class InscriptionPage implements OnInit {
   isLoading = false
 
   constructor(private compteService:CompteService,private router:Router) { 
+    addIcons({closeSharp})
     this.formGroup.valueChanges.subscribe(()=>{
       this.showErrorsWhenFormIsInvalid(this.formGroup.controls)
     })
@@ -80,11 +88,17 @@ export class InscriptionPage implements OnInit {
       this.compteService.inscriptionPartie1(compte).subscribe({next:(response:any)=>{
         this.isLoading = false
         this.resetInputInForm()
-        console.log(response)
         this.router.navigate(["/inscription/verification-email"])
         localStorage.setItem("email",compte.email)
-      },error:()=>{
+      },error:(response)=>{
         this.isLoading = false
+        try {
+         
+            this.showToast(response.error.messages[0].contenu,response.error.messages[0].type)
+        
+        } catch (e) {
+          this.showToast("Verifye koneksyon entenet ou an","error")
+        }
       }})
     }
   }
@@ -158,6 +172,22 @@ export class InscriptionPage implements OnInit {
     // this.formGroup.markAsUntouched()
     this.formGroup.reset()
     
+  }
+
+  showToast(message:string,type:string,callback?:any){
+    
+    this.toastMessage = message
+    this.isToastOpen = true
+
+    setTimeout(()=>{ 
+      this.closeToast()
+      if(callback)
+        callback()
+    },5500)
+  }
+
+  closeToast(){
+    this.isToastOpen = false
   }
 
 }

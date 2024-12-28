@@ -1,5 +1,9 @@
 <ion-content [forceOverscroll]="false" [fullscreen]="true">
-  <div class="center">
+  
+    <div class="center">
+      @if(isLoading){
+        <ion-progress-bar type="indeterminate"></ion-progress-bar>
+      }
       <div class="max-content-w">
           <ion-grid [fixed]="true">
               <ion-row class="ion-justify-content-center">
@@ -61,7 +65,7 @@
           </ion-grid>
       </div>
   </div>
-  <ion-toast color="danger"  [isOpen]="isToastOpen" [message]="toastMessage" [duration]="5000" icon="close-sharp"></ion-toast>
+  <ion-toast color="danger" position="top"  [isOpen]="isToastOpen" [message]="toastMessage" [duration]="5000" icon="close-sharp"></ion-toast>
 </ion-content>
 
 <!-- [formControl]="yourFormControl" -->

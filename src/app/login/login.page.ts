@@ -1,10 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { IonContent, IonGrid, IonCol, IonText, IonImg, IonRow, IonInput, IonButton, IonSpinner, IonToast, IonIcon } from '@ionic/angular/standalone';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import {closeCircleSharp,closeCircleOutline, closeSharp } from 'ionicons/icons';
 import { addIcons } from 'ionicons';
+import { Compte } from '../models/Compte';
+import { Subscription } from 'rxjs';
+import { CompteService } from '../services/compte.service';
 @Component({
     selector: 'app-login',
     templateUrl: './login.page.html',
@@ -25,28 +28,78 @@ import { addIcons } from 'ionicons';
         RouterLink
     ]
 })
-export class LoginPage implements OnInit {
+export class LoginPage implements OnInit,OnDestroy {
 
   formGroup = new FormGroup({
       email: new FormControl("",Validators.required),
       password: new FormControl("",Validators.required) 
   })
 
-  isLoading = true
+  isLoading = false
+  isToastOpen = false
+  toastMessage = ""
+
+  
+
+  subscription = new Subscription()
 
 
-  constructor() {
+  constructor(private compteService:CompteService,private router:Router) {
     addIcons({closeSharp,closeCircleOutline});
-   }
+  }
 
   ngOnInit() {
   }
 
 
   onSubmit(){
-    const formValue = this.formGroup.value
+    this.formGroup.markAllAsTouched()
+    if(!this.formGroup.invalid){
+      this.isLoading = true
+      const formValue = this.formGroup.value
 
-    console.log(formValue)
+      const compte = new Compte()
+
+      compte.email = formValue.email as string
+      compte.password = formValue.password as string
+
+     this.subscription.add( this.compteService.login(compte).subscribe({next:(response:any)=>{
+        this.isLoading = false
+        console.log(response)
+        localStorage.setItem("idCompte",response.idCompte)
+        localStorage.setItem("token",response.token)
+        this.formGroup.reset()
+        this.router.navigate(["/accueil"])
+     },error:(response)=>{
+        this.isLoading = false
+        try {
+            const message = response.error.message
+            this.showToast(message.contenu,message.type)
+        } catch (e) {
+          this.showToast("Verifye koneksyon entenet ou an","error")
+        }
+     }}))
+    }
+  }
+
+  showToast(message:string,type:string,callback?:any){
+    
+    this.toastMessage = message
+    this.isToastOpen = true
+
+    setTimeout(()=>{ 
+      this.closeToast()
+      if(callback)
+        callback()
+    },5500)
+  }
+
+  closeToast(){
+    this.isToastOpen = false
+  }
+
+  ngOnDestroy(): void {
+      this.subscription.unsubscribe()
   }
 
 }
