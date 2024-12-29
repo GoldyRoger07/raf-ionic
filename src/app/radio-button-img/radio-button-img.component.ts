@@ -1,11 +1,18 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { ControlValueAccessor } from '@angular/forms';
+import { Component, forwardRef, Input, OnInit } from '@angular/core';
+import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
 @Component({
   selector: 'radio-button-img',
   templateUrl: './radio-button-img.component.html',
   styleUrls: ['./radio-button-img.component.scss'],
-  standalone: true
+  standalone: true,
+  providers: [
+    {
+      provide: NG_VALUE_ACCESSOR,
+      useExisting: forwardRef(() => RadioButtonImgComponent),
+      multi: true
+    }
+  ]
 })
 export class RadioButtonImgComponent  implements OnInit,ControlValueAccessor {
   

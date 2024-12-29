@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { IonContent, IonMenu,IonMenuButton,IonMenuToggle, IonHeader, IonTitle, IonToolbar, IonButtons, IonImg, IonSegment, IonSegmentButton, IonSegmentView,IonSegmentContent,IonLabel, IonList, IonItem, IonAvatar, IonIcon, IonRouterOutlet, IonListHeader, IonNote, IonSplitPane, IonGrid, IonCol, IonRow, IonModal, IonButton, IonInput } from '@ionic/angular/standalone';
 import { addIcons } from 'ionicons';
@@ -9,13 +9,13 @@ import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angul
 import { RadioButtonImgComponent } from 'src/app/radio-button-img/radio-button-img.component';
 import { CompteService } from 'src/app/services/compte.service';
 import { Subscription } from 'rxjs';
+import { Compte } from 'src/app/models/Compte';
 @Component({
     selector: 'app-accueil',
     templateUrl: './accueil.page.html',
     styleUrls: ['./accueil.page.scss'],
     standalone: true,
     imports: [
-        FormsModule,
         IonInput,
         IonButton,
         IonModal,
@@ -44,7 +44,7 @@ import { Subscription } from 'rxjs';
         RadioButtonImgComponent
     ]
 })
-export class AccueilPage implements OnInit,OnDestroy {
+export class AccueilPage implements OnInit,OnDestroy,AfterViewInit {
 
   @ViewChild(IonModal) modal!: IonModal;
   titreTransaction = "Depoze Lajan"
@@ -54,12 +54,13 @@ export class AccueilPage implements OnInit,OnDestroy {
   isConnected = true
   message = 'This modal example uses triggers to automatically open a modal when the button is clicked.';
   name!: string;
+  compte = new Compte()
 
   subscription = new Subscription()
 
   formGroup = new FormGroup({
     montant: new FormControl(),
-    paiement: new FormControl('')
+    paiement: new FormControl()
   })
 
 
@@ -70,15 +71,27 @@ export class AccueilPage implements OnInit,OnDestroy {
 
   ngOnInit() {
     
-      this.subscription.add(
-            this.compteService.ping().subscribe({next:(response)=>{
-                console.log(response)
-                this.isConnected = true
-            },error:(response)=>{
-              this.isConnected = false
-            }})
-      )
       
+  }
+
+  ngAfterViewInit() {
+    console.log("akey")
+    this.subscription.add(
+          this.compteService.ping().subscribe({next:()=>{
+              this.isConnected = true
+              this.initCompte()
+          },error:(res)=>{
+            this.isConnected = false
+            console.log(res)
+          }})
+    )
+  }
+
+
+  initCompte(){
+    this.subscription.add(this.compteService.getCompteAuthenticated().subscribe({next:(compte)=>{
+      this.compte = compte as Compte
+    },error:()=>{}}))
   }
 
   
@@ -120,6 +133,10 @@ export class AccueilPage implements OnInit,OnDestroy {
         this.typeTransaction = "retrait"
       }
     }
+  }
+
+  onSubmit(){
+    console.log(this.formGroup.value)
   }
 
   ngOnDestroy() {

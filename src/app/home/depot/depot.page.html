@@ -1,0 +1,59 @@
+<div class="ion-page">
+  <ion-header>
+    <ion-toolbar>
+      <ion-buttons slot="start">
+          <ion-back-button defaultHref="/accueil"></ion-back-button>
+      </ion-buttons>
+      <ion-title>Depoze Lajan</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <ion-content>
+    <form [formGroup]="formGroup" (submit)="onSubmit()">
+      <ion-grid>
+        <ion-row>
+          <ion-col>
+            <ion-input 
+               label="Kantite Lajan (HTG)"
+               label-placement="floating"
+               placeholder="Antre kantite kob depo a"
+               helperText="Antre chif selman" 
+               errorText="Verifye done ou antre yo" 
+               formControlName="montant"
+               required
+               type="number"></ion-input>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>
+            <ion-label>Metod Peman</ion-label>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>
+            <radio-button-img 
+              label="MonCash" 
+              value="moncash" 
+              src="/assets/img/logoMoncash.png" 
+              formControlName="paiement" 
+              name="paiement"/>
+          </ion-col>
+        </ion-row>
+          <ion-row class="last-ion-row">
+            <ion-col>
+                @if(isLoading){
+                    <ion-button expand="block" type="submit" disabled="true">
+                          <ion-spinner></ion-spinner>
+                    </ion-button>
+                }@else {
+                    <ion-button expand="block" type="submit" >
+                          <ion-text>Chanje</ion-text>
+                    </ion-button>
+                }
+            </ion-col>
+          </ion-row>
+      </ion-grid>
+  </form>
+  <ion-toast [color]="toastColor" position="top"  [isOpen]="isToastOpen" [message]="toastMessage" [duration]="3000" [icon]="toastIcon"></ion-toast>
+  </ion-content>
+</div>
+

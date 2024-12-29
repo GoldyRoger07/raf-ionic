@@ -10,7 +10,17 @@ export class UrlService {
 
   compteUrl = this.baseUrl+"/compte"
 
-  exceptionUrls = [this.compteUrl+"/login",this.compteUrl+"/inscription-partie1",this.compteUrl+"/inscription-partie2"]
+  exceptionUrls = [
+    this.compteUrl+"/login",
+    this.compteUrl+"/inscription-partie1",
+    this.compteUrl+"/inscription-partie2",
+    this.baseUrl+"/email/code-verification",
+    this.baseUrl+"/email/resend/code-verification"
+  ]
 
   constructor() { }
+
+  redirectTo(url:string){
+    window.location.href = url
+  }
 }

@@ -7,7 +7,7 @@ export class Compte{
         public prenom = "",
         public password = "",
         public telephone = "",
-        public urlPhotoProfile = "",
+        public urlPhotoProfile = "no-image",
         public solde = 0,
         public role = "",
         public actif = true,

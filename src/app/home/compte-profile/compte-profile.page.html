@@ -13,13 +13,17 @@
         <ion-row class="profile-row">
           <ion-col size="3">
               <ion-avatar>
-                <ion-img class="profile-img" src="assets/img/logoProfile.jpg"></ion-img>
+                @if(compte.urlPhotoProfile !== "no-image"){
+                  <ion-img class="profile-img" [src]="compte.urlPhotoProfile"></ion-img>
+                }@else {
+                  <ion-img class="profile-img" src="assets/img/default-profile-user.png"></ion-img>
+                }
               </ion-avatar>
           </ion-col>
           <ion-col size="9">
             <div class="profile-data">
-              <div class="username">Sasugou</div>
-              <div class="solde">5000 HTG</div>
+              <div class="username">{{compte.username}}</div>
+              <div class="solde">{{ compte.solde | customCurrency}}</div>
             </div>
           </ion-col>
         </ion-row>

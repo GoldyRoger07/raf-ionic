@@ -48,5 +48,13 @@ export const routes: Routes = [
   {
     path: 'modifier/password',
     loadComponent: () => import('./home/update-password/update-password.page').then( m => m.UpdatePasswordPage)
+  },
+  {
+    path: 'transactions/depot',
+    loadComponent: () => import('./home/depot/depot.page').then( m => m.DepotPage)
+  },
+  {
+    path: 'transactions/retrait',
+    loadComponent: () => import('./home/retrait/retrait.page').then( m => m.RetraitPage)
   }
 ];

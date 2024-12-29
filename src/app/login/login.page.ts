@@ -65,11 +65,10 @@ export class LoginPage implements OnInit,OnDestroy {
 
      this.subscription.add( this.compteService.login(compte).subscribe({next:(response:any)=>{
         this.isLoading = false
-        console.log(response)
-        localStorage.setItem("idCompte",response.idCompte)
         localStorage.setItem("token",response.token)
         this.formGroup.reset()
         this.router.navigate(["/accueil"])
+        
      },error:(response)=>{
         this.isLoading = false
         try {

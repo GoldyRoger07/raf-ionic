@@ -8,7 +8,7 @@
         </ion-toolbar>
       </ion-header>
       <ion-content>
-        <form [formGroup]="formGroup">
+        <form [formGroup]="formGroup" (submit)="onSubmit()">
             <ion-grid>
                 <ion-row>
                     <ion-col>
@@ -18,7 +18,8 @@
                         label-placement="floating"
                         placeholder="Antre non ou"
                         helperText="Sa ap pemet nou pi byen idantifye w" 
-                        errorText="non sa pa valid"/>
+                        [errorText]="prenomErrorText"
+                        [value]="compte.prenom"/>
                       </ion-col>
                 </ion-row>
                 <ion-row>
@@ -29,7 +30,8 @@
                       label-placement="floating"
                       placeholder="Antre sinyatiw ou"
                       helperText="Sa ap pemet nou pi byen idantifye w" 
-                      errorText="Sinyati sa pa valid"/>
+                      [errorText]="nomErrorText"
+                      [value]="compte.nom"/>
                     </ion-col>
               </ion-row>
               <ion-row>
@@ -41,7 +43,8 @@
                         label-placement="floating"
                         placeholder="Antre telefon ou"
                         helperText="Nimewo sa ap pemet ou fe tranzaksyon MonCash sou platfom lan" 
-                        errorText="telefon sa pa valid"/>
+                        [errorText]="telephoneErrorText"
+                        [value]="compte.telephone"/>
                 </ion-col>
               </ion-row>
               <ion-row >
@@ -52,22 +55,26 @@
                         label-placement="floating"
                         placeholder="Antre on non itilizate"
                         helperText="Non sa ap pemet ou pi diskre sou platfom nan" 
-                        errorText="Non sa pa valid"/>
+                        [errorText]="usernameErrorText"
+                        [value]="compte.username"/>
                 </ion-col>
               </ion-row>
 
               <ion-row class="last-ion-row">
                 <ion-col>
-                  <ion-button expand="block" type="submit">
-                      @if(isLoading){
-                          <ion-spinner name="dots"></ion-spinner>
-                      }@else{
-                          <ion-text>Modifye</ion-text>
+                      @if (isLoading) {
+                          <ion-button disabled="true" expand="block" type="submit">
+                              <ion-spinner></ion-spinner>
+                          </ion-button>
+                      }@else {
+                          <ion-button expand="block" type="submit">
+                            <ion-text>Modifye</ion-text>
+                          </ion-button>
                       }
-                  </ion-button>
                 </ion-col>
               </ion-row>
             </ion-grid>
         </form>
+        <ion-toast [color]="toastColor" position="top"  [isOpen]="isToastOpen" [message]="toastMessage" [duration]="3000" [icon]="toastIcon"></ion-toast>
       </ion-content>
 </div>

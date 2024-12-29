@@ -45,8 +45,28 @@ export class CompteService {
   }
 
   ping(){
-    
+    this.completerDepot("1109452").subscribe()
     return this.http.get(this.urlService.compteUrl+"/ping-test")
+  }
+
+  getCompteAuthenticated(){
+    return this.http.get(this.urlService.compteUrl)
+  }
+
+  changerPassword(formValue:any){
+    return this.http.put(this.urlService.compteUrl+"/password",formValue)
+  }
+
+  updateInfo(compte:Compte){
+    return this.http.put(this.urlService.compteUrl,compte)
+  }
+
+  depot(formValue:any){
+    return this.http.post(this.urlService.compteUrl+"/transactions/depot",formValue)
+  }
+
+  completerDepot(transactionId:string){
+    return this.http.get(this.urlService.compteUrl+"/transactions/depot/"+transactionId)
   }
 
 }

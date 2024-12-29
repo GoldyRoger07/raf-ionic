@@ -105,7 +105,7 @@ export class CreatePasswordPage implements OnInit,OnDestroy {
 
   showToast(message:string,type:string,callback?:any){
     if(type === "success"){
-      this.iconToast = "check-sharp"
+      this.iconToast = "checkmark-sharp"
       this.colorToast = "success"
       
     }else{

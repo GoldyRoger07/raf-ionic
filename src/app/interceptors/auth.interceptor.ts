@@ -11,7 +11,7 @@ export class AuthInterceptor implements HttpInterceptor {
     const exceptionUrls = this.urlService.exceptionUrls
 
     if (exceptionUrls.some(url => !request.url.includes(url))) {
-      const token = localStorage.getItem('token'); // Récupérer le token
+      const token = localStorage.getItem("token") // Récupérer le token
       if (token) {
         console.log("interceptor")
         request = request.clone({
