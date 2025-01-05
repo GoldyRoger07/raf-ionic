@@ -17,4 +17,8 @@ export class QuizService {
   getQuiz(id:string){
     return this.http.get<Quiz>(this.urlService.baseUrl+"/quiz/"+id)
   }
+
+  askForStartPartie(id: string){
+    return this.http.get(this.urlService.baseUrl+"/start-partie/quiz/"+id)
+  }
 }

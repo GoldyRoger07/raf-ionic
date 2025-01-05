@@ -64,7 +64,7 @@
             <ion-list>
               @for(quiz of quizs;track quiz.id){
                 <!-- [routerLink]="'/accueil/quiz/'+quiz.id" -->
-                <ion-item lines="none" (click)="onClickSendMessage()">
+                <ion-item lines="none" [routerLink]="'/accueil/quiz/'+quiz.id">
                   <ion-avatar slot="start">
                       <img src="assets/img/mathematique_illustration.jpg" alt="">
                   </ion-avatar>

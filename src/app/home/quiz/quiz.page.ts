@@ -41,4 +41,10 @@ export class QuizPage implements OnInit,OnDestroy {
       this.subscription.unsubscribe()
   }
 
+  onPlay(){
+   this.subscription.add(this.quizService.askForStartPartie(this.quiz.id.toString()).subscribe({next:()=>{
+    
+   },error:()=>{}}))
+  }
+
 }
