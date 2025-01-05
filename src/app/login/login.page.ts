@@ -3,16 +3,18 @@ import { CommonModule } from '@angular/common';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { IonContent, IonGrid, IonCol, IonText, IonImg, IonRow, IonInput, IonButton, IonSpinner, IonToast, IonIcon } from '@ionic/angular/standalone';
 import { Router, RouterLink } from '@angular/router';
-import {closeCircleSharp,closeCircleOutline, closeSharp } from 'ionicons/icons';
+import {closeCircleOutline, closeSharp } from 'ionicons/icons';
 import { addIcons } from 'ionicons';
 import { Compte } from '../models/Compte';
 import { Subscription } from 'rxjs';
 import { CompteService } from '../services/compte.service';
+import { WebSocketService } from '../services/web-socket.service';
 @Component({
     selector: 'app-login',
     templateUrl: './login.page.html',
     styleUrls: ['./login.page.scss'],
-    imports: [IonIcon, IonToast,
+    imports: [
+        IonToast,
         IonSpinner,
         IonButton,
         IonInput,

@@ -10,6 +10,9 @@ import { RadioButtonImgComponent } from 'src/app/radio-button-img/radio-button-i
 import { CompteService } from 'src/app/services/compte.service';
 import { Subscription } from 'rxjs';
 import { Compte } from 'src/app/models/Compte';
+import { QuizService } from 'src/app/services/quiz.service';
+import { Quiz } from 'src/app/models/Quiz';
+import { WebSocketService } from 'src/app/services/web-socket.service';
 @Component({
     selector: 'app-accueil',
     templateUrl: './accueil.page.html',
@@ -55,6 +58,7 @@ export class AccueilPage implements OnInit,OnDestroy,AfterViewInit {
   message = 'This modal example uses triggers to automatically open a modal when the button is clicked.';
   name!: string;
   compte = new Compte()
+  quizs!:Quiz[] 
 
   subscription = new Subscription()
 
@@ -65,25 +69,36 @@ export class AccueilPage implements OnInit,OnDestroy,AfterViewInit {
 
 
   public labels = ['Family', 'Friends', 'Notes', 'Work', 'Travel', 'Reminders'];
-  constructor(private compteService:CompteService) {
+  constructor(private websocketService:WebSocketService,private compteService:CompteService,private quizService:QuizService) {
       addIcons({addCircleOutline,addCircleSharp,homeOutline,homeSharp,removeCircleOutline,removeCircleSharp, mailOutline, mailSharp, paperPlaneOutline, paperPlaneSharp, heartOutline, heartSharp, archiveOutline, archiveSharp, trashOutline, trashSharp, warningOutline, warningSharp, bookmarkOutline, bookmarkSharp });
   }
 
   ngOnInit() {
     
-      
   }
 
   ngAfterViewInit() {
     console.log("akey")
+    this.websocketService.connect()
+    
     this.subscription.add(
           this.compteService.ping().subscribe({next:()=>{
               this.isConnected = true
               this.initCompte()
+              this.initQuizs()
+              
           },error:(res)=>{
             this.isConnected = false
             console.log(res)
           }})
+    )
+  }
+
+  initQuizs(){
+    this.subscription.add(
+      this.quizService.getQuizs().subscribe({next:(quizs:Quiz[])=>{
+          this.quizs = quizs
+      }})
     )
   }
 
@@ -92,6 +107,10 @@ export class AccueilPage implements OnInit,OnDestroy,AfterViewInit {
     this.subscription.add(this.compteService.getCompteAuthenticated().subscribe({next:(compte)=>{
       this.compte = compte as Compte
     },error:()=>{}}))
+  }
+
+  onClickSendMessage(){
+    this.websocketService.sendMessageToUser("Hello WorldSocket")
   }
 
   

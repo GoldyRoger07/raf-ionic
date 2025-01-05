@@ -14,7 +14,7 @@ import { checkmarkSharp, closeSharp } from 'ionicons/icons';
     selector: 'app-create-password',
     templateUrl: './create-password.page.html',
     styleUrls: ['./create-password.page.scss'],
-    imports: [IonToast,ReactiveFormsModule,IonSpinner, IonText, IonButton, IonInput, IonImg, IonCol, IonRow, IonGrid, IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule]
+    imports: [IonToast,ReactiveFormsModule,IonSpinner, IonText, IonButton, IonInput, IonImg, IonCol, IonRow, IonGrid, IonContent, CommonModule, FormsModule]
 })
 export class CreatePasswordPage implements OnInit,OnDestroy {
 

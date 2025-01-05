@@ -5,7 +5,9 @@ import { Injectable } from '@angular/core';
 })
 export class UrlService {
 
-  baseUrl = "http://localhost:8080/api/raf"
+  serverUrl = "http://localhost:8080"
+
+  baseUrl = this.serverUrl+"/api/raf"
   // baseUrl = "http://192.168.0.178:8080/api/raf"
 
   compteUrl = this.baseUrl+"/compte"

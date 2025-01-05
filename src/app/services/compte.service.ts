@@ -45,7 +45,7 @@ export class CompteService {
   }
 
   ping(){
-    this.completerDepot("1109452").subscribe()
+    // this.completerDepot("1109452").subscribe()
     return this.http.get(this.urlService.compteUrl+"/ping-test")
   }
 

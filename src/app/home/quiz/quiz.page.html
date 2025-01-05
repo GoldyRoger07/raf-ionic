@@ -17,14 +17,14 @@
           </ion-row>
           <ion-row>
               <ion-col>
-                <div class="titre">Genyen 1500 HTG gras ak matematik</div>
-                <p>Prensip lan senp, moun ki reponn plis kesyon an se li nap bay <b>1500 HTG</b> lan le kwiz lan fini.<br/>
-                   Kesyon yo fasil pou w reponn, ou gen yon dele <b>10 sekond</b> pou chak kesyon kew ap reponn
+                <div class="titre">Genyen {{quiz.prime | customCurrency}} gras ak {{quiz.sujet.value | lowercase}}</div>
+                <p>Prensip lan senp, moun ki reponn plis kesyon an se li nap bay <b>{{quiz.prime | customCurrency}}</b> lan le kwiz lan fini.<br/>
+                   Kesyon yo fasil pou w reponn, ou gen yon dele <b>{{quiz.tempsParPartie}} sekond</b> pou chak pati
                 </p>
                 <p class="p-caracteristique">
-                  Wap bezwen <b>25 HTG</b> pou w patisipe nan kwiz la<br/>
+                  Wap bezwen <b>{{quiz.prix | customCurrency}}</b> pou w patisipe nan kwiz la<br/>
                   <b>{{'@'}}sonix</b><br/> se itilizate ki reponn plis kesyon nan moman an<br/>
-                  reko kesyon nan moman an se <b>10</b><br/>
+                  reko kesyon nan moman an se <b>{{quiz.bestScore}}</b><br/>
                   Kwiz lan ap fini <b>16 dec 2024 a 22:30</b>
                 </p>
               </ion-col>
