@@ -52,8 +52,10 @@ export class TimerComponent  implements OnDestroy,AfterViewInit {
 
   formatNumber2(minutes:number,secondes:number):string{
     let result = ""
-    if(minutes>0)
+    if(minutes>0 && secondes>=10)
       result+=`${minutes}:${secondes}`
+    else if(minutes>0 && secondes<10)
+      result+=`${minutes}:0${secondes}`
     else
       result = `${secondes}`
     return result

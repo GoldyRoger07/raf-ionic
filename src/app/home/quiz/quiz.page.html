@@ -33,7 +33,16 @@
           <ion-row class="last-ion-row">
               <ion-col>
                 <div class="buttons">
-                  <ion-button expand="block">Jwe</ion-button>
+                  <!-- <ion-button expand="block">Jwe</ion-button> -->
+                  @if (isLoading) {
+                      <ion-button disabled="true" expand="block" >
+                          <ion-spinner></ion-spinner>
+                      </ion-button>
+                  }@else {
+                      <ion-button expand="block" (click)="onPlay()">
+                        <ion-text>Jwe</ion-text>
+                      </ion-button>
+                  }
                   <ion-button color="light" expand="block">Pataje</ion-button>
                 </div>
               </ion-col>

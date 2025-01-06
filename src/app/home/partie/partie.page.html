@@ -12,27 +12,22 @@
     <ion-content>
         <ion-grid>
             
-            <ion-row>
+            <ion-row class="ion-row-score">
               <ion-col>Meye Sko <b>15 Ks</b></ion-col>
-                <ion-col>Sko <b>0 Ks</b></ion-col>
+                <ion-col>Sko <b>{{score}} Ks</b></ion-col>
             </ion-row>
             <ion-row class="ion-justify-content-center">
               <ion-col size="2">
-                <div class="my-timer">
-                  10
+                <div class="my-timer" (click)="onClickTimer()">
+                  <!-- 10 -->
+                  <app-timer [timerLeft]="timerLeft" #timer (timerComplete)="onTimerFinished()"/>
                 </div>
               </ion-col>
             </ion-row>
             <ion-row>
                 <ion-col>
                     <div class="question-box">
-                        <p>
-                          Kiyes nan nimewo sa yo ki pi gro,
-                          Kiyes nan nimewo sa yo ki pi gro,
-                          Kiyes nan nimewo sa yo ki pi gro,
-                          Kiyes nan nimewo sa yo ki pi gro ?
-
-                        </p>
+                        <p>{{question.value}}</p>
                     </div>
                     
                 </ion-col>
@@ -40,17 +35,17 @@
             <ion-row class="last-ion-row">
                 <ion-col>
                   <div class="reponses-box">
-                        <div class="reponse-box">
-                           <div class="reponse-letter">A:</div>  1234
+                        <div [class]="'reponse-box '+reponseStatutA" (click)="onClickToAnswer(reponses[0].id,'A')">
+                           <div class="reponse-letter">A:</div>  {{reponses[0].value}}
                         </div>
-                        <div class="reponse-box">
-                          <div class="reponse-letter">B:</div> 97778
+                        <div [class]="'reponse-box '+reponseStatutB" (click)="onClickToAnswer(reponses[1].id,'B')">
+                          <div class="reponse-letter">B:</div> {{reponses[1].value}}
                         </div>
-                        <div class="reponse-box success">
-                          <div class="reponse-letter">C:</div> 7078
+                        <div [class]="'reponse-box '+reponseStatutC" (click)="onClickToAnswer(reponses[2].id,'C')">
+                          <div class="reponse-letter">C:</div> {{reponses[2].value}}
                         </div>
-                        <div class="reponse-box">
-                          <div class="reponse-letter">D:</div> 57370
+                        <div [class]="'reponse-box '+reponseStatutD" (click)="onClickToAnswer(reponses[3].id,'D')">
+                          <div class="reponse-letter">D:</div> {{reponses[3].value}}
                         </div>
                   </div>
                 </ion-col>
@@ -60,9 +55,9 @@
 
 </div>
 <ion-alert
-  [isOpen] ="!isAlertOpen"
+  [isOpen] ="isAlertOpen"
   header ="Pati a fini"
-  message = "Ou reponn 5 kesyon"
+  [message] = "message"
   [buttons] = "alertButtons"
   (didDismiss)="setOpen(false)"
 ></ion-alert>

@@ -69,7 +69,7 @@ export class AccueilPage implements OnInit,OnDestroy,AfterViewInit {
 
 
   public labels = ['Family', 'Friends', 'Notes', 'Work', 'Travel', 'Reminders'];
-  constructor(private websocketService:WebSocketService,private compteService:CompteService,private quizService:QuizService) {
+  constructor(private compteService:CompteService,private quizService:QuizService) {
       addIcons({addCircleOutline,addCircleSharp,homeOutline,homeSharp,removeCircleOutline,removeCircleSharp, mailOutline, mailSharp, paperPlaneOutline, paperPlaneSharp, heartOutline, heartSharp, archiveOutline, archiveSharp, trashOutline, trashSharp, warningOutline, warningSharp, bookmarkOutline, bookmarkSharp });
   }
 
@@ -79,7 +79,6 @@ export class AccueilPage implements OnInit,OnDestroy,AfterViewInit {
 
   ngAfterViewInit() {
     console.log("akey")
-    this.websocketService.connect()
     
     this.subscription.add(
           this.compteService.ping().subscribe({next:()=>{
@@ -109,9 +108,9 @@ export class AccueilPage implements OnInit,OnDestroy,AfterViewInit {
     },error:()=>{}}))
   }
 
-  onClickSendMessage(){
-    this.websocketService.sendMessageToUser("Hello WorldSocket")
-  }
+  // onClickSendMessage(){
+  //   this.websocketService.sendMessageToUser("Hello WorldSocket")
+  // }
 
   
 

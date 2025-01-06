@@ -15,7 +15,7 @@ export class WebSocketService {
   }
 
 
-  connect(){
+  connect(callbacks:any){
     // SockJS
     const socket = SockJS( `${this.urlService.serverUrl}/websocket?access_token=${this.token}`)
 
@@ -24,14 +24,34 @@ export class WebSocketService {
     this.stompClient.connect({}, ()=>{
       console.log("Connected to WebSocket")
 
+
       this.stompClient.subscribe("/user/queue/reply",(message)=>{
         console.log("Message prive recu: ",message.body)
       })
+
+      this.stompClient.subscribe("/user/queue/reply/question",callbacks.onGetQuestion)
+
+      this.stompClient.subscribe("/user/queue/reply/end-partie",callbacks.onEndPartie)
+
+      this.stompClient.subscribe("/user/queue/reply/score",callbacks.onUpdateScore)
+
+      this.stompClient.subscribe("/user/queue/reply/reponse-statut",callbacks.onGetReponseStatut)
+      
+      this.firstQuestion()
+      
     })
   }
 
-  sendMessageToUser(message: string){
-    this.stompClient.send("/app/send-to-user",{},message)
+  sendMessageToServer(message: string){
+    this.stompClient.send("/app/send-to-server",{},message)
+  }
+
+  firstQuestion(){
+    this.stompClient.send("/app/first-question",{},"Im ready")
+  }
+
+  sendReponseToServer(response:any){
+    this.stompClient.send("/app/send-reponse-to-server",{},JSON.stringify(response))
   }
   
 }

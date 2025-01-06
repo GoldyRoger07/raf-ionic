@@ -9,6 +9,15 @@ ion-grid{
     margin-top: auto;
 }
 
+.ion-row-score{
+    display: flex;
+    justify-content: space-between;
+}
+
+.ion-row-score col{
+    width: max-content;
+}
+
 .reponses-box{
     display: flex;
     flex-direction: column;
