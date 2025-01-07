@@ -9,6 +9,7 @@ import { Compte } from '../models/Compte';
 import { Subscription } from 'rxjs';
 import { CompteService } from '../services/compte.service';
 import { WebSocketService } from '../services/web-socket.service';
+import { UrlService } from '../services/url.service';
 @Component({
     selector: 'app-login',
     templateUrl: './login.page.html',
@@ -46,7 +47,7 @@ export class LoginPage implements OnInit,OnDestroy {
   subscription = new Subscription()
 
 
-  constructor(private compteService:CompteService,private router:Router) {
+  constructor(private compteService:CompteService,private router:Router,private urlService:UrlService) {
     addIcons({closeSharp,closeCircleOutline});
   }
 
@@ -69,7 +70,7 @@ export class LoginPage implements OnInit,OnDestroy {
         this.isLoading = false
         localStorage.setItem("token",response.token)
         this.formGroup.reset()
-        this.router.navigate(["/accueil"])
+        this.urlService.redirectTo("/accueil")
         
      },error:(response)=>{
         this.isLoading = false

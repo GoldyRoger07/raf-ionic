@@ -1,21 +1,24 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { CommonModule, DecimalPipe } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { IonText,IonSpinner,IonContent, IonHeader, IonTitle, IonToolbar, IonButtons, IonBackButton, IonImg, IonRow, IonGrid, IonCol, IonButton } from '@ionic/angular/standalone';
+import { IonAlert,IonText,IonSpinner,IonContent, IonHeader, IonTitle, IonToolbar, IonButtons, IonBackButton, IonImg, IonRow, IonGrid, IonCol, IonButton } from '@ionic/angular/standalone';
 import { Quiz } from 'src/app/models/Quiz';
 import { ActivatedRoute, Route, Router } from '@angular/router';
 import { QuizService } from 'src/app/services/quiz.service';
 import { Subscription } from 'rxjs';
 import { CustomCurrencyPipe } from "../../custom-currency.pipe";
+import { UrlService } from 'src/app/services/url.service';
 
 @Component({
     selector: 'app-quiz',
     templateUrl: './quiz.page.html',
     styleUrls: ['./quiz.page.scss'],
-    imports: [IonText,IonSpinner,IonButton, IonCol, IonGrid, IonRow, IonImg, IonBackButton, IonButtons, IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, CustomCurrencyPipe],
+    imports: [IonAlert,IonText,IonSpinner,IonButton, IonCol, IonGrid, IonRow, IonImg, IonBackButton, IonButtons, IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, CustomCurrencyPipe],
     providers: [DecimalPipe]
 })
 export class QuizPage implements OnInit,OnDestroy {
+
+  isAlertOpen = false
 
   quiz = new Quiz()
 
@@ -23,7 +26,25 @@ export class QuizPage implements OnInit,OnDestroy {
 
   isLoading = false
 
-  constructor(private activatedRoute:ActivatedRoute,private quizService:QuizService,private router:Router) { }
+  message = ""
+
+  alertButtons = [
+    {
+      text: "Anile",
+      role: "cancel",
+      handler: ()=>{
+        // this.router.navigate(["/accueil"])
+      }
+    },{
+      text: "Rechaje kont Mwen",
+      role: "confirm",
+      handler: ()=>{    
+        this.router.navigate(["/transactions/depot"])
+      }
+    }
+  ]
+
+  constructor(private urlService:UrlService,private activatedRoute:ActivatedRoute,private quizService:QuizService,private router:Router) { }
 
   ngOnInit() {
     this.initQuiz()
@@ -50,8 +71,13 @@ export class QuizPage implements OnInit,OnDestroy {
       this.router.navigate(["/partie"])
    },error:(response)=>{
       this.isLoading = false
-      console.log(response)
+      this.message = response.error.message.contenu
+      this.setOpen(true)
    }}))
+  }
+
+  setOpen(value: boolean){
+    this.isAlertOpen = value
   }
 
 }

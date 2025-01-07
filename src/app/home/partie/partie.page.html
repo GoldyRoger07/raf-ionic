@@ -12,14 +12,18 @@
     <ion-content>
         <ion-grid>
             
-            <ion-row class="ion-row-score">
-              <ion-col>Meye Sko <b>15 Ks</b></ion-col>
-                <ion-col>Sko <b>{{score}} Ks</b></ion-col>
+            <ion-row>
+              <ion-col>
+                <div class="ion-row-score">
+                  <span>Meye Sko <b>15 Ks</b></span>
+                  <span>Sko <b>{{score}} Ks</b></span>
+                </div>
+              </ion-col>
+              
             </ion-row>
             <ion-row class="ion-justify-content-center">
               <ion-col size="2">
-                <div class="my-timer" (click)="onClickTimer()">
-                  <!-- 10 -->
+                <div class="my-timer">
                   <app-timer [timerLeft]="timerLeft" #timer (timerComplete)="onTimerFinished()"/>
                 </div>
               </ion-col>

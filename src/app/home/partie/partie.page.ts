@@ -64,7 +64,9 @@ export class PartiePage implements OnInit,AfterViewInit {
         this.subscription.add(this.quizService.askForStartPartie(this.idQuiz.toString()).subscribe({next:()=>{
           this.urlService.redirectTo("/partie")
        },error:(response)=>{
-          console.log(response)
+          this.message = response.error.message.contenu
+          
+          
        }}))
       }
     }
@@ -94,9 +96,19 @@ export class PartiePage implements OnInit,AfterViewInit {
       
       this.idQuiz = response.partie.quiz.id
 
+      if(response.canPlayAgain !== "oui"){
+        this.alertButtons[1].text = "Rechaje kont mwen"
+        this.alertButtons[1].handler = ()=>{
+          
+            this.router.navigate(["/transactions/depot"])
+         
+        }
+      }
+
+
       this.isAlertOpen = true
 
-      console.log(this.message)
+      
     },
     onUpdateScore: (message:any)=>{
         const response = message.body as number

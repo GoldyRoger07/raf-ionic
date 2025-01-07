@@ -50,5 +50,12 @@
       </ion-grid>
   </ion-content>
 </div>
+<ion-alert
+  [isOpen] ="isAlertOpen"
+  header ="Gen yon ere"
+  [message] = "message"
+  [buttons] = "alertButtons"
+  (didDismiss)="setOpen(false)"
+></ion-alert>
   
 

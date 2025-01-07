@@ -5,6 +5,7 @@ import { Injectable } from '@angular/core';
 })
 export class UrlService {
 
+  // serverUrl = "http://192.168.0.196:8080"
   serverUrl = "http://localhost:8080"
 
   baseUrl = this.serverUrl+"/api/raf"
