@@ -8,6 +8,7 @@ import { QuizService } from 'src/app/services/quiz.service';
 import { Subscription } from 'rxjs';
 import { CustomCurrencyPipe } from "../../custom-currency.pipe";
 import { UrlService } from 'src/app/services/url.service';
+import { Partie } from 'src/app/models/Partie';
 
 @Component({
     selector: 'app-quiz',
@@ -21,6 +22,8 @@ export class QuizPage implements OnInit,OnDestroy {
   isAlertOpen = false
 
   quiz = new Quiz()
+
+  bestPartie:Partie | null = null
 
   subscription = new Subscription()
 
@@ -47,15 +50,26 @@ export class QuizPage implements OnInit,OnDestroy {
   constructor(private urlService:UrlService,private activatedRoute:ActivatedRoute,private quizService:QuizService,private router:Router) { }
 
   ngOnInit() {
-    this.initQuiz()
+    const idQuiz = this.activatedRoute.snapshot.params["id"]
+    this.initQuiz(idQuiz)
+    this.initBestPartie(idQuiz)
   }
 
-  initQuiz(){
-    const idQuiz = this.activatedRoute.snapshot.params["id"]
+  initQuiz(idQuiz:string){
+    
 
     this.subscription.add(
         this.quizService.getQuiz(idQuiz).subscribe({next:(quiz:Quiz)=>{
               this.quiz = quiz
+        }})
+    )
+  }
+
+  initBestPartie(idQuiz:string){
+    
+    this.subscription.add(
+        this.quizService.getBestPartieByQuiz(idQuiz).subscribe({next:(partie:Partie)=>{
+              this.bestPartie = partie
         }})
     )
   }

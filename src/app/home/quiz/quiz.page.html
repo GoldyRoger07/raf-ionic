@@ -23,9 +23,14 @@
                 </p>
                 <p class="p-caracteristique">
                   Wap bezwen <b>{{quiz.prix | customCurrency}}</b> pou w patisipe nan kwiz la<br/>
-                  <b>{{'@'}}sonix</b><br/> se itilizate ki reponn plis kesyon nan moman an<br/>
-                  reko kesyon nan moman an se <b>{{quiz.bestScore}}</b><br/>
-                  Kwiz lan ap fini <b>16 dec 2024 a 22:30</b>
+                  @if(bestPartie!==null){
+                    <b>{{'@'+bestPartie.compte.username}}</b><br/> se itilizate ki reponn plis kesyon nan moman an<br/>
+                    reko kesyon nan moman an se <b>{{bestPartie.score}}</b><br/>
+                    Kwiz lan ap fini <b>{{quiz.dateFin | date: 'dd MMM yyyy'}} a {{quiz.dateFin | date: 'hh:mm'}}</b>
+                  }@else{
+                    reko kesyon nan moman an se <b>{{quiz.bestScore}}</b><br/>
+                  }                
+                  
                 </p>
               </ion-col>
           </ion-row>
