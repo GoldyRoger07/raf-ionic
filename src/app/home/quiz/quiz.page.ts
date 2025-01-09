@@ -61,6 +61,8 @@ export class QuizPage implements OnInit,OnDestroy {
     this.subscription.add(
         this.quizService.getQuiz(idQuiz).subscribe({next:(quiz:Quiz)=>{
               this.quiz = quiz
+
+              
         }})
     )
   }
@@ -82,7 +84,7 @@ export class QuizPage implements OnInit,OnDestroy {
     this.isLoading = true
    this.subscription.add(this.quizService.askForStartPartie(this.quiz.id.toString()).subscribe({next:()=>{
       this.isLoading = false
-      this.router.navigate(["/partie"])
+      this.router.navigate([`/partie/${this.quiz.id}`])
    },error:(response)=>{
       this.isLoading = false
       this.message = response.error.message.contenu

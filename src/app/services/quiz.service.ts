@@ -11,8 +11,8 @@ export class QuizService {
 
   constructor(private http:HttpClient,private urlService:UrlService) { }
 
-  getQuizs(){
-    return this.http.get<Quiz[]>(this.urlService.baseUrl+"/quizs")
+  getQuizs(etat="EN_COURS"){
+    return this.http.get<Quiz[]>(this.urlService.baseUrl+"/quizs/"+etat)
   }
 
   getQuiz(id:string){

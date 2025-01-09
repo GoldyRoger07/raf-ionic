@@ -15,7 +15,13 @@
             <ion-row>
               <ion-col>
                 <div class="ion-row-score">
-                  <span>Meye Sko <b>15 Ks</b></span>
+                  <span>Meye Sko 
+                    @if(bestPartie){
+                      <b>{{bestPartie.score}} Ks</b>
+                    }@else {
+                      <b>{{quiz?.bestScore}} Ks</b>
+                    }
+                  </span>
                   <span>Sko <b>{{score}} Ks</b></span>
                 </div>
               </ion-col>

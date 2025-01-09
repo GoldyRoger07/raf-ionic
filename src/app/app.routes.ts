@@ -34,7 +34,7 @@ export const routes: Routes = [
     loadComponent: () => import('./home/quiz/quiz.page').then( m => m.QuizPage)
   },
   {
-    path: 'partie',
+    path: 'partie/:id',
     loadComponent: () => import('./home/partie/partie.page').then( m => m.PartiePage)
   },
   {

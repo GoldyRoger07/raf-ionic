@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { IonContent, IonHeader, IonTitle, IonToolbar, IonButtons, IonBackButton, IonGrid, IonRow, IonCol, IonAlert } from '@ionic/angular/standalone';
@@ -6,10 +6,12 @@ import { WebSocketService } from 'src/app/services/web-socket.service';
 import { TimerComponent } from "../timer/timer.component";
 import { Question } from 'src/app/models/Question';
 import { Reponse } from 'src/app/models/Reponse';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { QuizService } from 'src/app/services/quiz.service';
 import { UrlService } from 'src/app/services/url.service';
+import { Quiz } from 'src/app/models/Quiz';
+import { Partie } from 'src/app/models/Partie';
 
 @Component({
     selector: 'app-partie',
@@ -17,7 +19,7 @@ import { UrlService } from 'src/app/services/url.service';
     styleUrls: ['./partie.page.scss'],
     imports: [IonAlert, IonCol, IonRow, IonGrid, IonBackButton, IonButtons, IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, TimerComponent]
 })
-export class PartiePage implements OnInit,AfterViewInit {
+export class PartiePage implements AfterViewInit,OnDestroy {
 
 
   isAlertOpen = false
@@ -25,6 +27,10 @@ export class PartiePage implements OnInit,AfterViewInit {
   timerLeft = 0
 
   score = 0
+
+  quiz:Quiz | null = null
+
+  bestPartie: Partie | null = null
 
   question = new Question()
   reponses:Reponse[] = [
@@ -129,15 +135,35 @@ export class PartiePage implements OnInit,AfterViewInit {
     },1000)
   }
   
-  constructor(private urlService:UrlService,private webSocketService:WebSocketService,private router:Router,private quizService: QuizService) { }
+  constructor(private urlService:UrlService,private activatedRoute:ActivatedRoute,private webSocketService:WebSocketService,private router:Router,private quizService: QuizService) {
 
-  ngOnInit() {
-    // this.webSocketService.firstQuestion()
-    // this.webSocketService.connect(this.callbacks)
   }
 
+   initQuiz(idQuiz:string){
+     
+ 
+     this.subscription.add(
+         this.quizService.getQuiz(idQuiz).subscribe({next:(quiz:Quiz)=>{
+               this.quiz = quiz
+ 
+               
+         }})
+     )
+   }
+ 
+   initBestPartie(idQuiz:string){
+     
+     this.subscription.add(
+         this.quizService.getBestPartieByQuiz(idQuiz).subscribe({next:(partie:Partie)=>{
+               this.bestPartie = partie
+         }})
+     )
+   }
+
   ngAfterViewInit(): void {
-    
+    const idQuiz = this.activatedRoute.snapshot.params["id"]
+    this.initBestPartie(idQuiz)
+    this.initQuiz(idQuiz)
     this.webSocketService.connect(this.callbacks)
     
   }
@@ -184,6 +210,10 @@ export class PartiePage implements OnInit,AfterViewInit {
 
   onClickTimer(){
     this.webSocketService.firstQuestion()
+  }
+
+  ngOnDestroy(): void {
+      this.subscription.unsubscribe()
   }
 
 }
