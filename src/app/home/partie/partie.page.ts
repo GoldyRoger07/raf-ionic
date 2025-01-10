@@ -51,6 +51,8 @@ export class PartiePage implements AfterViewInit,OnDestroy {
 
   idQuiz = 0
 
+  refresh = true
+
   @ViewChild("timer")
   timer!: TimerComponent
 
@@ -68,22 +70,28 @@ export class PartiePage implements AfterViewInit,OnDestroy {
       role: "confirm",
       handler: ()=>{
         this.subscription.add(this.quizService.askForStartPartie(this.idQuiz.toString()).subscribe({next:()=>{
-          this.urlService.redirectTo("/partie")
+          this.score=0
+          this.webSocketService.firstQuestion()
+          this.timer.subscription = new Subscription()
+         
        },error:(response)=>{
           this.message = response.error.message.contenu
-          
-          
        }}))
       }
     }
   ]
+
+  refreshComponent(){
+    this.refresh = false
+    setTimeout(()=> this.refresh = true ,10)
+  }
 
   callbacks = {
     onGetQuestion: (message:any)=>{
       const response = JSON.parse(message.body)
 
       if(response.timerPartie){
-          this.timerLeft = response.timerPartie 
+          this.timer.timerLeft = response.timerPartie 
           this.timer.startTimer()
       }
 
@@ -91,7 +99,7 @@ export class PartiePage implements AfterViewInit,OnDestroy {
       this.resetReponseStatuts()
 
       setTimeout(()=>{this.question = response.question
-      this.reponses = response.reponses},1000)
+      this.reponses = response.reponses},1700)
 
       
     },
@@ -119,6 +127,7 @@ export class PartiePage implements AfterViewInit,OnDestroy {
     onUpdateScore: (message:any)=>{
         const response = message.body as number
         this.score = response
+        console.log(`this.score = ${this.score}`)
     },
     onGetReponseStatut:(message:any)=>{
       const response = message.body
@@ -173,7 +182,9 @@ export class PartiePage implements AfterViewInit,OnDestroy {
   }
 
   onTimerFinished() {
-    throw new Error('Method not implemented.');
+    // this.timer.subscription.unsubscribe()
+    console.log(this.timerLeft)
+    console.log("Le Timer est terminer")
   }
 
   setResult(ev: any){
@@ -190,6 +201,11 @@ export class PartiePage implements AfterViewInit,OnDestroy {
   }
 
   setStatutToReponseLetter(statut:string){
+    if(statut === "success")
+      this.playSound('good')
+    else
+      this.playSound('bad')
+
     this.resetReponseStatuts()
     switch(this.reponseLetter){
       case "A":
@@ -208,12 +224,21 @@ export class PartiePage implements AfterViewInit,OnDestroy {
     }
   }
 
+  playSound(soundType: 'good'|'bad'){
+    const soundPath = soundType === 'good'?'assets/music/goodAnswer.mp3':'assets/music/badAnswer.mp3'
+
+    const audio = new Audio(soundPath);
+
+    audio.play()
+  }
+
   onClickTimer(){
     this.webSocketService.firstQuestion()
   }
 
   ngOnDestroy(): void {
       this.subscription.unsubscribe()
+      this.webSocketService.disconnect()
   }
 
 }

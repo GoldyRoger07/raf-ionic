@@ -26,4 +26,8 @@ export class UrlService {
   redirectTo(url:string){
     window.location.href = url
   }
+
+  reload(){
+    window.location.reload()
+  }
 }

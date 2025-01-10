@@ -62,7 +62,7 @@
     <ion-segment-view>
       <ion-segment-content id="quiz-encours">
             <ion-list>
-              @for(quiz of quizs;track quiz.id){
+              @for(quiz of quizsEncours;track quiz.id){
                 <!-- [routerLink]="'/accueil/quiz/'+quiz.id" -->
                 <ion-item lines="none" [routerLink]="'/accueil/quiz/'+quiz.id">
                   <ion-avatar slot="start">
@@ -76,12 +76,16 @@
       </ion-segment-content>
       <ion-segment-content id="quiz-terminer">
         <ion-list>
-          <ion-item lines="none" routerLink="/accueil/quiz">
-            <ion-avatar slot="start">
-                <img src="assets/img/mathematique_illustration.jpg" alt="">
-            </ion-avatar>
-            <ion-label>Matematik</ion-label>
-          </ion-item>
+          @for(quiz of quizsTerminer;track quiz.id){
+            <!-- [routerLink]="'/accueil/quiz/'+quiz.id" -->
+            <ion-item lines="none" [routerLink]="'/accueil/quiz-terminer/'+quiz.id">
+              <ion-avatar slot="start">
+                  <img src="assets/img/mathematique_illustration.jpg" alt="">
+              </ion-avatar>
+              <!-- <ion-label>Matematik</ion-label> -->
+              <ion-label>{{quiz.titre}}</ion-label>
+            </ion-item>
+          } 
         </ion-list>
       </ion-segment-content>
       <ion-segment-content id="transactions">

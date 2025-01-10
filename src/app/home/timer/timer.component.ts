@@ -10,10 +10,9 @@ export class TimerComponent  implements OnDestroy,AfterViewInit {
 
   displayTime = "0"
 
-  @Input()
-  timerLeft = 120
+  timerLeft = 0
 
-  private subscription = new Subscription()
+   subscription = new Subscription()
 
   @Output() 
   timerComplete = new EventEmitter<void>()
@@ -25,16 +24,17 @@ export class TimerComponent  implements OnDestroy,AfterViewInit {
   }
 
   startTimer(){
-    this.subscription = interval(1000).subscribe(()=>{
+    this.subscription.add (interval(1000).subscribe(()=>{
       if(this.timerLeft > 0 ){
         this.timerLeft--
 
         this.updateDisplayTime()
       }else{
+        console.log(`timeleft=${this.timerLeft}`)
         this.subscription.unsubscribe()
         this.timerComplete.emit()
       }
-    })
+    }))
   }
 
   updateDisplayTime(){

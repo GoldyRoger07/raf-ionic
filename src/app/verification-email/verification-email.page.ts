@@ -78,6 +78,7 @@ export class VerificationEmailPage implements AfterViewInit {
   }
 
   ngAfterViewInit() {
+      this.timer.timerLeft = 30
       this.timer.startTimer() 
   }
 
@@ -88,7 +89,10 @@ export class VerificationEmailPage implements AfterViewInit {
   onClickResendCode(){
     this.compteService.resendCodeVerification()
     this.isTimerRunning = true
-    setTimeout(()=>this.timer.startTimer(),100)
+    setTimeout(()=>{
+      this.timer.timerLeft = 30
+      this.timer.startTimer()
+    },100)
     
   }
 

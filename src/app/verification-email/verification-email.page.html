@@ -40,7 +40,7 @@
                             <ion-row>
                                   <ion-col>
                                     @if(isTimerRunning) {
-                                      <p>Apre <app-timer [timerLeft]="30" #timer (timerComplete)="onTimerFinished()"/> wap ka mande revoye on lot kod</p>
+                                      <p>Apre <app-timer  #timer (timerComplete)="onTimerFinished()"/> wap ka mande revoye on lot kod</p>
                                     }@else {
                                       <p>ou pa resevwa kod lan? <ion-text color="primary" (click)="onClickResendCode()">Revoye kod lan</ion-text></p>
                                     }

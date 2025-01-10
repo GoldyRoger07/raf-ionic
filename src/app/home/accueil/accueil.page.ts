@@ -58,7 +58,8 @@ export class AccueilPage implements OnInit,OnDestroy,AfterViewInit {
   message = 'This modal example uses triggers to automatically open a modal when the button is clicked.';
   name!: string;
   compte = new Compte()
-  quizs!:Quiz[] 
+  quizsEncours!:Quiz[] 
+  quizsTerminer!:Quiz[]
 
   subscription = new Subscription()
 
@@ -85,6 +86,7 @@ export class AccueilPage implements OnInit,OnDestroy,AfterViewInit {
               this.isConnected = true
               this.initCompte()
               this.initQuizs()
+              this.initQuizsTerminer()
               
           },error:(res)=>{
             this.isConnected = false
@@ -96,7 +98,15 @@ export class AccueilPage implements OnInit,OnDestroy,AfterViewInit {
   initQuizs(){
     this.subscription.add(
       this.quizService.getQuizs().subscribe({next:(quizs:Quiz[])=>{
-          this.quizs = quizs
+          this.quizsEncours = quizs
+      }})
+    )
+  }
+
+  initQuizsTerminer(){
+    this.subscription.add(
+      this.quizService.getQuizs("TERMINER").subscribe({next:(quizs:Quiz[])=>{
+          this.quizsTerminer = quizs
       }})
     )
   }

@@ -56,5 +56,9 @@ export const routes: Routes = [
   {
     path: 'transactions/retrait',
     loadComponent: () => import('./home/retrait/retrait.page').then( m => m.RetraitPage)
+  },
+  {
+    path: 'accueil/quiz-terminer/:id',
+    loadComponent: () => import('./home/quiz-terminer/quiz-terminer.page').then( m => m.QuizTerminerPage)
   }
 ];

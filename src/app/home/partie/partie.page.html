@@ -1,4 +1,4 @@
-<div class="ion-page">
+<div class="ion-page" *ngIf="refresh">
 
     <ion-header>
       <ion-toolbar>
@@ -30,7 +30,7 @@
             <ion-row class="ion-justify-content-center">
               <ion-col size="2">
                 <div class="my-timer">
-                  <app-timer [timerLeft]="timerLeft" #timer (timerComplete)="onTimerFinished()"/>
+                  <app-timer  #timer (timerComplete)="onTimerFinished()"/>
                 </div>
               </ion-col>
             </ion-row>

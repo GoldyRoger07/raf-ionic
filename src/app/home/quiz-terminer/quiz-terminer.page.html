@@ -1,0 +1,43 @@
+<div class="ion-page">
+  <ion-header [translucent]="true">
+    <ion-toolbar>
+      <ion-buttons slot="start">
+          <ion-back-button defaultHref="/accueil"></ion-back-button>
+      </ion-buttons>
+      <ion-title>{{quiz.titre}}</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  
+  <ion-content>
+      <ion-grid>
+          <ion-row>
+              <ion-col>
+                <ion-img src="assets/img/mathematique_illustration.jpg"></ion-img>
+              </ion-col>
+          </ion-row>
+          <ion-row>
+              <ion-col>
+                <p>
+                 Felisitasyon pou <b>{{bestPartie?.compte?.username}}</b> ki ranpote prim <b>{{quiz.prime | customCurrency }}</b> lan, pou <b>{{bestPartie?.score}}</b> kesyon li reponn korekteman yo, Mesi a tout patisipan yo, rete konekte pou lot kwiz kap vini yo.
+                </p>
+                
+              </ion-col>
+          </ion-row>
+          
+          <ion-row class="last-ion-row">
+              <ion-col>    
+                  <ion-button color="light" expand="block">Pataje</ion-button>
+              </ion-col>
+          </ion-row>
+      </ion-grid>
+  </ion-content>
+</div>
+<!-- <ion-alert
+  [isOpen] ="isAlertOpen"
+  header ="Gen yon ere"
+  [message] = "message"
+  [buttons] = "alertButtons"
+  (didDismiss)="setOpen(false)"
+></ion-alert> -->
+  
+

@@ -1,0 +1,29 @@
+.p-caracteristique{
+    font-size: medium;
+}
+
+.titre{
+    font-size: large;
+    font-weight: bold;
+}
+
+ion-grid{
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.last-ion-row{
+    margin-top: auto;
+}
+
+ion-img{
+    width: 100dvw;
+    height: 40dvh;
+}
+
+.buttons{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}

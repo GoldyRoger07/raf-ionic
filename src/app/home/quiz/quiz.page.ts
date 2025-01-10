@@ -56,13 +56,9 @@ export class QuizPage implements OnInit,OnDestroy {
   }
 
   initQuiz(idQuiz:string){
-    
-
     this.subscription.add(
         this.quizService.getQuiz(idQuiz).subscribe({next:(quiz:Quiz)=>{
-              this.quiz = quiz
-
-              
+              this.quiz = quiz   
         }})
     )
   }
