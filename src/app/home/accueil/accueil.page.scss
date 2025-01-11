@@ -47,6 +47,26 @@
   // --padding-bottom: 10px;
 }
 
+.default-message{
+  height: 82%;
+  position: relative;
+  color: #aaa9a9;
+}
+
+.default-message span{
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%,-50%);
+}
+
+// ion-segment-view,ion-content,ion-segment-content{
+//   height: 100%;
+// }
+
+#main-content{
+  height: 100%;
+}
 
 
 ion-menu ion-content {

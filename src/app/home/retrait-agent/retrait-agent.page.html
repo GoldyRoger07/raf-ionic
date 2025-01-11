@@ -1,0 +1,89 @@
+<div class="ion-page">
+  <ion-header>
+    <ion-toolbar>
+      <ion-buttons slot="start">
+          <ion-back-button defaultHref="/accueil"></ion-back-button>
+      </ion-buttons>
+      <ion-title>Retre Kliyan</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <ion-content>
+    
+  <form [formGroup]="formGroup" (submit)="onSubmit()">
+      <ion-grid>
+
+        <ion-row>
+          <ion-col>
+            <div class="search-container">
+                <ion-input 
+                label="Non itilizate"
+                label-placement="floating"
+                placeholder="Antre non itilizate a"
+                helperText="Antre yon non itilizate ki valid"
+                errorText="Non itilizate a paka rete vid"
+                required
+                formControlName="username"
+                ></ion-input>
+                <div class="result-container" *ngIf="isFocus">
+                    <div class="result">
+                        <ion-list>
+                          @for(username of usernames$ | async; track username){
+                            
+                            <div class="m-item" (click)="onClickRow(username)">
+                                {{username}}
+                            </div>
+                          }
+
+                        </ion-list>
+                    </div>
+                </div>
+            </div>
+            
+          </ion-col>
+        </ion-row>
+
+        <ion-row>
+          <ion-col>
+                <ion-input 
+                label="Kantite Lajan (HTG)"
+                label-placement="floating"
+                placeholder="Antre kantite kob retre a"
+                helperText="Antre on chif ki siperye a 0" 
+                [errorText]="montantErrorText" 
+                required
+                type="number"
+                formControlName="montant"></ion-input>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>
+            <div class="titre-montant">Kantite lajan kliyan ap resevwa :</div>
+            <b>{{montantCalculer | customCurrency}}</b>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>
+            <div class="titre-montant">Komisyon Ajan :</div>
+            <b>{{commissionAgent | customCurrency}}</b>
+          </ion-col>
+        </ion-row>
+          <ion-row class="last-ion-row">
+            <ion-col>
+                @if(isLoading){
+                    <ion-button expand="block" type="submit" disabled="true">
+                          <ion-spinner></ion-spinner>
+                    </ion-button>
+                }@else {
+                    <ion-button expand="block" type="submit" >
+                          <ion-text>Valide</ion-text>
+                    </ion-button>
+                }
+            </ion-col>
+          </ion-row>
+      </ion-grid>
+  </form>
+  <ion-toast color="danger" position="top"  [isOpen]="isToastOpen" [message]="toastMessage" [duration]="3000" icon="close-sharp"></ion-toast>
+  
+</ion-content>
+</div>
+

@@ -1,5 +1,12 @@
 <ion-app>
     <ion-router-outlet id="main-content"></ion-router-outlet>
+  <ion-alert
+      [isOpen] ="isAlertOpen"
+      header ="Notifikasyon"
+      [message] = "message"
+      [buttons] = "alertButtons"
+      (didDismiss)="setOpen(false)">
+  </ion-alert>
 </ion-app>
 
 <!-- <ion-split-pane contentId="main-content">

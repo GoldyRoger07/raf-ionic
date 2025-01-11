@@ -1,8 +1,9 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { UrlService } from './url.service';
 import { TokenService } from './token.service';
 import { Compte } from '../models/Compte';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -67,6 +68,29 @@ export class CompteService {
 
   completerDepot(transactionId:string){
     return this.http.get(this.urlService.compteUrl+"/transactions/depot/"+transactionId)
+  }
+
+  getAllUsernames(username:string):Observable<string[]>{
+    let params = new HttpParams()
+    params = params.append("username",username)
+    return this.http.get<[]>(this.urlService.compteUrl+"/usernames",{params})
+  }
+
+  getAgentCommissionDepot(){
+    return this.http.get<number>(this.urlService.compteUrl+"/agent/depot/commission-pourcentage")
+  }
+
+  getAgentCommissionRetrait(){
+    return this.http.get<number>(this.urlService.compteUrl+"/agent/retrait/commission-pourcentage")
+  }
+
+  depotAgent(formValue: any){
+    return this.http.post(this.urlService.compteUrl+"/agent/depot",formValue)
+
+  }
+
+  retraitAgent(formValue: any){
+    return this.http.post(this.urlService.compteUrl+"/agent/retrait",formValue)
   }
 
 }

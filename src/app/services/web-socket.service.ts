@@ -44,6 +44,18 @@ export class WebSocketService {
     })
   }
 
+  connectForNotification(callback:any){
+    // /queue/reply/client/notification
+
+    const socket = SockJS( `${this.urlService.serverUrl}/websocket?access_token=${this.token}`)
+
+    this.stompClient = Stomp.over(socket)
+
+    this.stompClient.connect({},()=>{
+      this.stompClient.subscribe("/user/queue/reply/client/notification",callback)
+    })
+  }
+
   sendMessageToServer(message: string){
     this.stompClient.send("/app/send-to-server",{},message)
   }
