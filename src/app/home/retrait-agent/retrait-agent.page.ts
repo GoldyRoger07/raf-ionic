@@ -5,7 +5,7 @@ import { IonInput,IonContent, IonHeader, IonTitle, IonToolbar, IonToast, IonAler
 import { greaterThanZeroValidator } from 'src/app/validators/GreaterThanZeroValidator';
 import { CompteService } from 'src/app/services/compte.service';
 import { addIcons } from 'ionicons';
-import { closeSharp } from 'ionicons/icons';
+import { checkmarkSharp, closeSharp } from 'ionicons/icons';
 import { combineLatest, debounceTime, Observable, startWith, switchMap } from 'rxjs';
 import { CustomCurrencyPipe } from "../../custom-currency.pipe";
 
@@ -34,6 +34,10 @@ export class RetraitAgentPage implements OnInit {
 
   isToastOpen = false
 
+  colorToast = ""
+
+  iconToast = ""
+
   message = ""
 
   toastMessage = ""
@@ -57,7 +61,7 @@ export class RetraitAgentPage implements OnInit {
   ]
 
   constructor(private compteService:CompteService) {
-    addIcons({closeSharp})
+    addIcons({closeSharp,checkmarkSharp}) 
 
     this.formGroup.controls.username.valueChanges.subscribe(()=> {
       if(!this.isFocus)
@@ -130,7 +134,15 @@ export class RetraitAgentPage implements OnInit {
   }
 
   showToast(message:string,type:string,callback?:any){
-    
+    if(type === "success"){
+      this.iconToast = "checkmark-sharp"
+      this.colorToast = "success"
+      
+    }else{
+      this.iconToast = "close-sharp"
+      this.colorToast = "danger"
+    }
+
     this.toastMessage = message
     this.isToastOpen = true
 
@@ -138,7 +150,7 @@ export class RetraitAgentPage implements OnInit {
       this.closeToast()
       if(callback)
         callback()
-    },3500)
+    },5500)
   }
 
   closeToast(){

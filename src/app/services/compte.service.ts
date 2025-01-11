@@ -93,4 +93,8 @@ export class CompteService {
     return this.http.post(this.urlService.compteUrl+"/agent/retrait",formValue)
   }
 
+  confirmerRetraitByClient(formValue: any){
+    return this.http.post(this.urlService.compteUrl+"/client/confirmer-retrait",formValue)
+  }
+
 }

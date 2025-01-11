@@ -1,0 +1,41 @@
+form{
+    height: 100%;
+}
+ion-grid{
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.last-ion-row{
+    margin-top: auto;
+}
+
+.result-container{
+    position: relative;
+}
+
+.result{
+    position: absolute;
+    width: 100%;
+    max-height: 300px;
+    overflow-y: auto;
+    background: #fff;
+    z-index: 999;
+    
+}
+
+.m-item{
+    padding: 15px 2px;
+    transition:all 0.2s;
+}
+
+.m-item:active{
+    background: #adadad;
+}
+
+.titre-montant{
+    font-size: 15px;
+    color:#535353;
+    margin-bottom: 5px;
+}

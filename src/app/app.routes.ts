@@ -62,6 +62,10 @@ export const routes: Routes = [
     loadComponent: () => import('./home/depot-agent/depot-agent.page').then( m => m.DepotAgentPage)
   },
   {
+    path: 'transactions/agent/retrait',
+    loadComponent: () => import('./home/retrait-agent/retrait-agent.page').then( m => m.RetraitAgentPage)
+  },
+  {
     path: 'accueil/quiz-terminer/:id',
     loadComponent: () => import('./home/quiz-terminer/quiz-terminer.page').then( m => m.QuizTerminerPage)
   },

@@ -57,7 +57,7 @@
         </ion-row>
         <ion-row>
           <ion-col>
-            <div class="titre-montant">Kantite lajan kliyan ap resevwa :</div>
+            <div class="titre-montant">Kantite lajan kap soti sou kont kliyan :</div>
             <b>{{montantCalculer | customCurrency}}</b>
           </ion-col>
         </ion-row>
@@ -82,7 +82,7 @@
           </ion-row>
       </ion-grid>
   </form>
-  <ion-toast color="danger" position="top"  [isOpen]="isToastOpen" [message]="toastMessage" [duration]="3000" icon="close-sharp"></ion-toast>
+  <ion-toast [color]="colorToast" position="top"  [isOpen]="isToastOpen" [message]="toastMessage" [duration]="5000" [icon]="iconToast"></ion-toast>
   
 </ion-content>
 </div>

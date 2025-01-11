@@ -7,6 +7,51 @@
       [buttons] = "alertButtons"
       (didDismiss)="setOpen(false)">
   </ion-alert>
+  <ion-toast [color]="colorToast" position="top"  [isOpen]="isToastOpen" [message]="toastMessage" [duration]="5000" [icon]="iconToast"></ion-toast>
+  <ion-modal
+    [isOpen]="isModalOpen"
+    [initialBreakpoint]="0.85"
+    [breakpoints]="[0,0.5,0.85]"
+    handleBehavior="cycle"
+  >
+    <ng-template>
+      <ion-content>
+          <form [formGroup]="formGroup" (submit)="onSubmit()">
+              <ion-grid>
+                  <ion-row>
+                      <ion-col>
+                        {{messageModal}}
+                      </ion-col>
+                  </ion-row>
+                  <ion-row>
+                    <ion-col>
+                      <ion-input
+                        type="password" 
+                        label="Modpass"
+                        label-placement="floating"
+                        helperText="Antre on modpass ki valid"
+                        errorText="Modpass lan paka rete vid" 
+                        placeholder="Antre modpass ou"
+                        formControlName="password"/>
+                    
+                    </ion-col>
+                  </ion-row>
+                  <ion-col>
+                    @if(isLoading){
+                        <ion-button expand="block" type="submit" disabled="true">
+                              <ion-spinner></ion-spinner>
+                        </ion-button>
+                    }@else {
+                        <ion-button expand="block" type="submit" >
+                              <ion-text>Valide</ion-text>
+                        </ion-button>
+                    }
+                </ion-col>
+              </ion-grid>
+          </form>
+      </ion-content>
+    </ng-template>
+  </ion-modal>
 </ion-app>
 
 <!-- <ion-split-pane contentId="main-content">

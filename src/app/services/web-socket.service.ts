@@ -44,7 +44,7 @@ export class WebSocketService {
     })
   }
 
-  connectForNotification(callback:any){
+  connectForNotification(callbacks:any){
     // /queue/reply/client/notification
 
     const socket = SockJS( `${this.urlService.serverUrl}/websocket?access_token=${this.token}`)
@@ -52,7 +52,11 @@ export class WebSocketService {
     this.stompClient = Stomp.over(socket)
 
     this.stompClient.connect({},()=>{
-      this.stompClient.subscribe("/user/queue/reply/client/notification",callback)
+      this.stompClient.subscribe("/user/queue/reply/client/notification",callbacks.onGetNotification)
+      // /queue/reply/client/confirmer-retrait
+      this.stompClient.subscribe("/user/queue/reply/client/confirmer-retrait",callbacks.onConfirmeRetrait)
+      // /agent/notification
+      this.stompClient.subscribe("/user/queue/reply/agent/notification",callbacks.onGetAgentNotification)
     })
   }
 
