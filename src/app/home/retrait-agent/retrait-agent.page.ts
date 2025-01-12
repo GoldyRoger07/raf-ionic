@@ -14,7 +14,7 @@ import { CustomCurrencyPipe } from "../../custom-currency.pipe";
   templateUrl: './retrait-agent.page.html',
   styleUrls: ['./retrait-agent.page.scss'],
   standalone: true,
-  imports: [IonInput,IonBackButton, IonButtons, ReactiveFormsModule,IonGrid, IonList, IonText, IonSpinner, IonButton, IonCol, IonRow, IonAlert, IonToast, IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, CustomCurrencyPipe],
+  imports: [IonInput,IonBackButton, IonButtons, ReactiveFormsModule,IonGrid, IonList, IonText, IonSpinner, IonButton, IonCol, IonRow, IonToast, IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, CustomCurrencyPipe],
   providers:[DecimalPipe]
 })
 export class RetraitAgentPage implements OnInit {
@@ -73,6 +73,9 @@ export class RetraitAgentPage implements OnInit {
       if(value>=0 ){
         this.montantCalculer = value as number * this.commissionRetrait 
         this.commissionAgent = this.montantCalculer - value as number
+      }else{
+        this.montantCalculer = 0
+        this.commissionAgent = 0
       }
 
       if(this.formGroup.controls.montant.hasError("greaterThanZero"))

@@ -19,7 +19,6 @@ import { WebSocketService } from 'src/app/services/web-socket.service';
     styleUrls: ['./accueil.page.scss'],
     standalone: true,
     imports: [
-        IonAlert,
         IonButton,
         IonIcon,
         IonItem,
@@ -59,6 +58,7 @@ export class AccueilPage implements OnInit,OnDestroy,AfterViewInit {
   quizsEncours!:Quiz[] 
   quizsTerminer!:Quiz[]
   isAlertOpen = false
+  isAgent = false
 
 
   subscription = new Subscription()
@@ -121,6 +121,12 @@ export class AccueilPage implements OnInit,OnDestroy,AfterViewInit {
   initCompte(){
     this.subscription.add(this.compteService.getCompteAuthenticated().subscribe({next:(compte)=>{
       this.compte = compte as Compte
+
+      if(this.compte.role === "AGENT" || this.compte.role === "ADMIN"){
+        this.compteService.isAgent = true
+        this.isAgent = true
+      }  
+      this.compteService.isAuth = true
     },error:()=>{}}))
   }
 

@@ -61,6 +61,9 @@ export class DepotAgentPage implements OnInit {
         if(value>=0 ){
           this.montantCalculer = value as number * this.commissionDepot 
           this.commissionAgent = value as number - this.montantCalculer
+        }else{
+          this.montantCalculer = 0
+          this.commissionAgent = 0
         }
 
         if(this.formGroup.controls.montant.hasError("greaterThanZero"))

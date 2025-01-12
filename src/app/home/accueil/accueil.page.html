@@ -56,7 +56,7 @@
         <ion-segment-button value="transactions" contentId="transactions">
           <ion-label>Tranzaksyon</ion-label>
         </ion-segment-button>
-        <ion-segment-button value="transactions-agent" contentId="transactions-agent">
+        <ion-segment-button *ngIf="isAgent" value="transactions-agent" contentId="transactions-agent">
           <ion-label>Tranzaksyon Pou Ajan</ion-label>
         </ion-segment-button>
     </ion-segment>
@@ -103,7 +103,7 @@
           <p>Poko gen kwiz ki fini</p>
         }
       </ion-segment-content>
-      <ion-segment-content id="transactions">
+      <ion-segment-content  id="transactions">
           <ion-list>
               <ion-item lines="none" >
                   <ion-icon slot="start" ios="add-circle-outline" md="add-circle-sharp"></ion-icon>
@@ -116,7 +116,7 @@
           </ion-list>
           
       </ion-segment-content>
-      <ion-segment-content id="transactions-agent">
+      <ion-segment-content *ngIf="isAgent" id="transactions-agent">
         <ion-list>
           <ion-item lines="none" routerLink="/transactions/agent/depot">
               <ion-icon slot="start" ios="add-circle-outline" md="add-circle-sharp"></ion-icon>

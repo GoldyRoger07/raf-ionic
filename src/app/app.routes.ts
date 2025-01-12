@@ -1,4 +1,5 @@
 import { Routes } from '@angular/router';
+import { AuthGuardService } from './services/auth-guard.service';
 
 export const routes: Routes = [
   {
@@ -59,22 +60,16 @@ export const routes: Routes = [
   },
   {
     path: 'transactions/agent/depot',
+    canActivate: [AuthGuardService],
     loadComponent: () => import('./home/depot-agent/depot-agent.page').then( m => m.DepotAgentPage)
   },
   {
     path: 'transactions/agent/retrait',
+    canActivate: [AuthGuardService],
     loadComponent: () => import('./home/retrait-agent/retrait-agent.page').then( m => m.RetraitAgentPage)
   },
   {
     path: 'accueil/quiz-terminer/:id',
     loadComponent: () => import('./home/quiz-terminer/quiz-terminer.page').then( m => m.QuizTerminerPage)
-  },
-  {
-    path: 'depot-agent',
-    loadComponent: () => import('./home/depot-agent/depot-agent.page').then( m => m.DepotAgentPage)
-  },
-  {
-    path: 'retrait-agent',
-    loadComponent: () => import('./home/retrait-agent/retrait-agent.page').then( m => m.RetraitAgentPage)
   }
 ];

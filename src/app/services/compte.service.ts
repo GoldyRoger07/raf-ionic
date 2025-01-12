@@ -16,6 +16,10 @@ export class CompteService {
     private tokenService:TokenService
   ) {}
 
+  isAuth = false
+
+  isAgent = false
+
     // const headers = this.tokenService.getHeadersWithToken()
   inscriptionPartie1(compte:Compte){
      return this.http.post(this.urlService.compteUrl+"/inscription-partie1", compte)
