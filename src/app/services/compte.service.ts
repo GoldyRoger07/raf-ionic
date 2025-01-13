@@ -62,6 +62,14 @@ export class CompteService {
     return this.http.put(this.urlService.compteUrl+"/password",formValue)
   }
 
+  forgetPassword(email:string){
+    return this.http.post(this.urlService.compteUrl+"/forget-password",email)
+  }
+
+  forgetPassword2(formValue:any){
+    return this.http.post(this.urlService.compteUrl+"/forget-password2",formValue)
+  }
+
   updateInfo(compte:Compte){
     return this.http.put(this.urlService.compteUrl,compte)
   }

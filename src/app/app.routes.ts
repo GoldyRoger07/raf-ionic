@@ -71,5 +71,13 @@ export const routes: Routes = [
   {
     path: 'accueil/quiz-terminer/:id',
     loadComponent: () => import('./home/quiz-terminer/quiz-terminer.page').then( m => m.QuizTerminerPage)
+  },
+  {
+    path: 'forget-password',
+    loadComponent: () => import('./forget-password/forget-password.page').then( m => m.ForgetPasswordPage)
+  },
+  {
+    path: 'forget-password/change-password',
+    loadComponent: () => import('./changer-password/changer-password.page').then( m => m.ChangerPasswordPage)
   }
 ];

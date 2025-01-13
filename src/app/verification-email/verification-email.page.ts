@@ -45,10 +45,15 @@ export class VerificationEmailPage implements AfterViewInit {
       if(value!==null && value.length === 6){
         this.isLoading = true
         this.compteService.verifierCode(value).subscribe({
-          next:(response)=>{
+          next:()=>{
             this.isLoading = false
             this.otpInput.setValue(null)
-            this.router.navigate(["/inscription/create-password"])
+            const context = localStorage.getItem("context")
+
+            if(context === "changerPassword")
+              this.router.navigate(["/forget-password/change-password"])
+            else
+              this.router.navigate(["/inscription/create-password"])
           },
           error: (response)=>{
             this.isLoading = false
@@ -65,9 +70,6 @@ export class VerificationEmailPage implements AfterViewInit {
               this.toastMessage = "Verifye koneksyon entenet ou an"
               this.isToastOpen = true
             }
-            
-            
-
             
           }
         })
