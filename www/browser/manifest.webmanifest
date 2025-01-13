@@ -5,7 +5,7 @@
     "background_color": "#fafafa",
     "display": "standalone",
     
-    "start_url": "https://mellow-zuccutto-c6d446.netlify.app/www/browser",
+    "start_url": "https://mellow-zuccutto-c6d446.netlify.app/accueil",
     "icons": [
       {
         "src": "assets/icon/icon-512x512.png",
