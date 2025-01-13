@@ -1,0 +1,21 @@
+{
+    "name": "Raf",
+    "short_name": "Raf",
+    "start_url": "/accueil",
+    "display": "standalone",
+    "background_color": "#ffffff",
+    "theme_color": "#3880ff",
+    "icons": [
+      {
+        "src": "assets/img/logo192.png",
+        "sizes": "192x68",
+        "type": "image/png"
+      },
+      {
+        "src": "assets/img/logo512.png",
+        "sizes": "512x181",
+        "type": "image/png"
+      }
+    ]
+  }
+  
