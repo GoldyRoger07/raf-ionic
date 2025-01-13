@@ -1,0 +1,9 @@
+[build]
+    base = "raf"
+    command = "npm run build:prod"
+    publish = "www/browser"
+
+    [[redirects]]
+    from = "/*"
+    to = "/index.html"
+    status = 200
