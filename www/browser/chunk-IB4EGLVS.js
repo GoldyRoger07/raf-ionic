@@ -1,0 +1,1 @@
+import{Da as a,L as m,O as o}from"./chunk-44MH6WD3.js";var p=(()=>{let t=class t{constructor(e){this.decimalPipe=e}transform(e,i="HTG"){return`${this.decimalPipe.transform(e,"1.2-2")} ${i}`}};t.\u0275fac=function(i){return new(i||t)(m(a,16))},t.\u0275pipe=o({name:"customCurrency",type:t,pure:!0});let r=t;return r})();export{p as a};
