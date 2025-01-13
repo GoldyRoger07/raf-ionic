@@ -1,5 +1,5 @@
 [build]
-    base = "/"
+    base = "RAF"
     command = "npm run build:prod"
     publish = "www/browser"
 
