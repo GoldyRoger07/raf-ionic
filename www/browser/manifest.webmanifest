@@ -8,13 +8,13 @@
     "start_url": "https://mellow-zuccutto-c6d446.netlify.app/www/browser",
     "icons": [
       {
-        "src": "icons/icon-512x512.png",
+        "src": "assets/icon/icon-512x512.png",
         "sizes": "512x512",
         "type": "image/png",
         "purpose": "maskable any"
       },
       {
-        "src": "icons/icon-192x192.png",
+        "src": "assets/icon/icon-192x192.png",
         "sizes": "192x192",
         "type": "image/png",
         "purpose": "maskable any"
