@@ -1,5 +1,5 @@
 [build]
-    base = "raf-ionic"
+    base = "/"
     command = "npm run build:prod"
     publish = "www/browser"
 
