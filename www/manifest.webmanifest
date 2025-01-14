@@ -1,7 +1,7 @@
 {
   "name": "app",
   "short_name": "app",
-  "theme_color": "#ff9800",
+  "theme_color": "#ffffff",
   "background_color": "#fafafa",
   "display": "standalone",
   "start_url": "https://goldyroger07.github.io/raf-ionic/www/",
