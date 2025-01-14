@@ -4,7 +4,7 @@
   "theme_color": "#ff9800",
   "background_color": "#fafafa",
   "display": "standalone",
-  "start_url": "http://localhost:8200/",
+  "start_url": "https://goldyroger07.github.io/raf-ionic/",
   "icons": [
     {
       "src": "assets/icons/icon-72x72.png",
