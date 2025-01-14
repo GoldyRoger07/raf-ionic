@@ -1,0 +1,1 @@
+var s=class{constructor(t="",i="",e="",h="",o="",r="",l="",a="no-image",n=0,m="",c=!0){this.idCompte=t,this.username=i,this.email=e,this.nom=h,this.prenom=o,this.password=r,this.telephone=l,this.urlPhotoProfile=a,this.solde=n,this.role=m,this.actif=c}};export{s as a};

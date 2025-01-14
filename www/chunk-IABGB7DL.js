@@ -1,0 +1,1 @@
+function d(u,a){return e=>{let r=e.get(u),s=e.get(a);return s!=null&&s.errors&&!s.errors.passwordmismatch?null:(r==null?void 0:r.value)!==(s==null?void 0:s.value)?(s==null||s.setErrors({passwordmismatch:!0}),{passwordmismatch:!0}):(s==null||s.setErrors(null),null)}}export{d as a};
