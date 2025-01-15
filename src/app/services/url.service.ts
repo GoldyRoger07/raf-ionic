@@ -4,10 +4,9 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class UrlService {
-
   // serverUrl = "http://192.168.0.196:8080"
-  serverUrl = "http://localhost:8080"
-  // serverUrl = "https://sure-wired-redfish.ngrok-free.app"
+  // serverUrl = "http://localhost:8080"
+  serverUrl = "https://sure-wired-redfish.ngrok-free.app"
 
   baseUrl = this.serverUrl+"/api/raf"
   // baseUrl = "http://192.168.0.178:8080/api/raf"
