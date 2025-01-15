@@ -70,7 +70,7 @@ export class LoginPage implements OnInit,OnDestroy {
         this.isLoading = false
         localStorage.setItem("token",response.token)
         this.formGroup.reset()
-        this.urlService.redirectTo("/accueil")
+        this.urlService.redirectTo("/raf-prod/accueil")
         
      },error:(response)=>{
         this.isLoading = false
