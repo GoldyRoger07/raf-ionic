@@ -1,10 +1,11 @@
 {
-  "name": "app",
-  "short_name": "app",
+  "name": "Raf",
+  "short_name": "Raf",
   "theme_color": "#ffffff",
-  "background_color": "#fafafa",
+  "background_color": "#ffffff",
   "display": "standalone",
-  "start_url": "https://goldyroger07.github.io/raf-ionic/www/",
+  "scope": "./",
+  "start_url": "./",
   "icons": [
     {
       "src": "assets/icons/icon-72x72.png",
@@ -34,8 +35,7 @@
     {
       "src": "assets/icons/icon-192x192.png",
       "sizes": "192x192",
-      "type": "image/png",
-      "purpose": "maskable any"
+      "type": "image/png"
     },
     {
       "src": "assets/icons/icon-384x384.png",
